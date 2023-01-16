@@ -1,7 +1,9 @@
-import java.util.*;
+import DAO.CustomerDAO;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("HI");
+        CustomerDAO userDAO = new CustomerDAO();
+        System.out.println(userDAO.findAll());
+        System.out.println(userDAO.findEntityById(1));
     }
 }
