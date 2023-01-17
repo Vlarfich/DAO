@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.ConcreteMixer;
+import Hierarchy.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,14 +55,22 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM ConcreteMixers WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(ConcreteMixer entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
-
     @Override
     public boolean create(ConcreteMixer entity) {
         throw new UnsupportedOperationException();

@@ -2,6 +2,7 @@ package DAO;
 
 import DAO.DAO;
 import Hierarchy.Customer;
+import Hierarchy.VehSupplier;
 import Hierarchy.Worker;
 
 import java.sql.*;
@@ -54,14 +55,22 @@ public class WorkerDAO implements DAO<Integer, Worker> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM Workers WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(Worker entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
-
     @Override
     public boolean create(Worker entity) {
         throw new UnsupportedOperationException();

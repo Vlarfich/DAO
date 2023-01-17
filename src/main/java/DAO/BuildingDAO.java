@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.Building;
+import Hierarchy.Customer;
 import Hierarchy.Project;
 
 import java.sql.Connection;
@@ -53,14 +54,22 @@ public class BuildingDAO implements DAO<Integer, Building> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM Buildings WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(Building entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
-
     @Override
     public boolean create(Building entity) {
         throw new UnsupportedOperationException();

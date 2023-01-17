@@ -65,4 +65,8 @@ public class ConcreteMixer {
                 ", Projects_id=" + Projects_id +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + model + "\", " + volume + "\", " + Suppler_id + ", " + Projects_id;
+    }
 }

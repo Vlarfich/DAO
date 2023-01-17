@@ -54,4 +54,8 @@ public class Bulldozer {
                 ", Projects_id=" + Projects_id +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + model + "\", " + Suppler_id + ", " + Projects_id;
+    }
 }

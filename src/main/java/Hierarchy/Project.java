@@ -32,4 +32,8 @@ public class Project {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public String simpleString(){
+        return id + ",\"" + name;
+    }
 }

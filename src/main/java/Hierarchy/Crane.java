@@ -65,4 +65,8 @@ public class Crane {
                 ", Projects_id=" + Projects_id +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + model + "\", " + height + "\", " + Suppler_id + ", " + Projects_id;
+    }
 }

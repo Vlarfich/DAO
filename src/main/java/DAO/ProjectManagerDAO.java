@@ -30,6 +30,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         return users;
     }
 
@@ -55,14 +56,22 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM ProjectManager WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(ProjectManager entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
-
     @Override
     public boolean create(ProjectManager entity) {
         throw new UnsupportedOperationException();

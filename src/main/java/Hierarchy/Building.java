@@ -32,4 +32,8 @@ public class Building {
                 ", address='" + address + '\'' +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + address + "\"";
+    }
 }

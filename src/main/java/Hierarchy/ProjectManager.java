@@ -50,4 +50,8 @@ public class ProjectManager {
                 ", Projects_id=" + Projects_id +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + name + "\", " +age + "\", " + Projects_id;
+    }
 }

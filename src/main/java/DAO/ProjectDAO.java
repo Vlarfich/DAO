@@ -1,6 +1,7 @@
 package DAO;
 
 import DAO.DAO;
+import Hierarchy.Customer;
 import Hierarchy.Project;
 
 import java.sql.Connection;
@@ -53,14 +54,22 @@ public class ProjectDAO implements DAO<Integer, Project> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM Projects WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(Project entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
-
     @Override
     public boolean create(Project entity) {
         throw new UnsupportedOperationException();

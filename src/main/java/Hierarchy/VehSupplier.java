@@ -40,4 +40,8 @@ public class VehSupplier {
                 ", Buildings_id=" + Buildings_id +
                 '}' + "\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + name + ", " + Buildings_id;
+    }
 }

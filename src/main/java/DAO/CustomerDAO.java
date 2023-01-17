@@ -2,6 +2,7 @@ package DAO;
 
 import DAO.DAO;
 import Hierarchy.Customer;
+import com.mysql.cj.util.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
         try (Connection connection = ConnectorDB.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
+
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
@@ -55,21 +57,48 @@ public class CustomerDAO implements DAO<Integer, Customer> {
 
     @Override
     public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "DELETE FROM Customers WHERE id = " + id.toString();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public boolean delete(Customer entity) {
-        throw new UnsupportedOperationException();
+        return delete(entity.getId());
     }
 
     @Override
     public boolean create(Customer entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO Customers VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public Customer update(Customer entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectorDB.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Customers SET email = \"customer222222@solvd.com\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

@@ -77,4 +77,8 @@ public class MaterialSupplyCompany {
                 ", Projects_id=" + Projects_id +
                 "}\n";
     }
+
+    public String simpleString(){
+        return id + ",\"" + name + "\", \"" + phone + "\", \"" + email + "\", " + Buildings_id + ", " + Projects_id;
+    }
 }
