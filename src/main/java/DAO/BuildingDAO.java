@@ -12,8 +12,7 @@ import java.util.List;
 
 public class BuildingDAO implements DAO<Integer, Building> {
     public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Buildings";
-    public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM Buildings WHERE id=?";
+    public static final String SQL_SELECT_USER_ID = "SELECT * FROM Buildings WHERE id=?";
 
     @Override
     public List<Building> findAll() {
@@ -75,7 +74,7 @@ public class BuildingDAO implements DAO<Integer, Building> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Buildings (adress) VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO Buildings VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -88,4 +87,5 @@ public class BuildingDAO implements DAO<Integer, Building> {
     public Building update(Building entity) {
         throw new UnsupportedOperationException();
     }
+
 }

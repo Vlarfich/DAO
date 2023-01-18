@@ -57,7 +57,7 @@ public class Worker {
     }
 
     public String simpleString(){
-        return "\"" + name + "\", " +age + ", " + Projects_id;
+        return id + ", \"" + name + "\", " +age + ", " + Projects_id;
     }
 
     public static Worker Factory(Scanner sc, Logger logger){
@@ -67,6 +67,6 @@ public class Worker {
         int age = ScannerGetter.getInt(sc);
         logger.info("Enter Projects_id:");
         int Project_id = ScannerGetter.getInt(sc);
-        return new Worker(0, name, age, Project_id);
+        return new Worker(MAX_ID.getMAX_ID("Workers") + 1, name, age, Project_id);
     }
 }

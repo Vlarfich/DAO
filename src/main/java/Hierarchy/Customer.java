@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class Customer {
     private int id;
     private String name;
@@ -67,8 +72,20 @@ public class Customer {
                 "}\n";
     }
 
-    public String simpleString(){
+    public String simpleString() {
         return id + ",\"" + name + "\", \"" + phone + "\", \"" + email + "\", " + Projects_id;
+    }
+
+    public static Customer Factory(Scanner sc, Logger logger) {
+        logger.info("Enter name:");
+        String name = sc.nextLine();
+        logger.info("Enter phone:");
+        String phone = sc.nextLine();
+        logger.info("Enter email:");
+        String email = sc.nextLine();
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new Customer(MAX_ID.getMAX_ID("Customers"), name, phone, email, Project_id);
     }
 
 }

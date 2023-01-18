@@ -73,7 +73,7 @@ public class ProjectDAO implements DAO<Integer, Project> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Projects (name) VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO Projects VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

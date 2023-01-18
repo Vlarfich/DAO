@@ -73,8 +73,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Workers (name, age, Projects_id) VALUES (" + entity.simpleString() + ")";
-            System.out.println("INSERT INTO Workers (name, age, Projects_id) VALUES (" + entity.simpleString() + ")");
+            String sql = "INSERT INTO Workers VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

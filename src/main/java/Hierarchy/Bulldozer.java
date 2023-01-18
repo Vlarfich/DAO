@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class Bulldozer {
     private int id;
     private String model;
@@ -57,5 +62,15 @@ public class Bulldozer {
 
     public String simpleString(){
         return id + ",\"" + model + "\", " + Suppler_id + ", " + Projects_id;
+    }
+
+    public static Bulldozer Factory(Scanner sc, Logger logger) {
+        logger.info("Enter model:");
+        String name = sc.nextLine();
+        logger.info("Enter Buildings_id:");
+        int Buildings_id = ScannerGetter.getInt(sc);
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new Bulldozer(MAX_ID.getMAX_ID("Buldozers") + 1, name, Buildings_id, Project_id);
     }
 }

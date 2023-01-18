@@ -39,12 +39,12 @@ public class Building {
     }
 
     public String simpleString(){
-        return "\"" + address + "\"";
+        return id + ", \"" + address + "\"";
     }
 
     public static Building Factory(Scanner sc, Logger logger){
         logger.info("Enter name:");
         String address = sc.nextLine();
-        return new Building(0, address);
+        return new Building(MAX_ID.getMAX_ID("Buildings") + 1, address);
     }
 }

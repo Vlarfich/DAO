@@ -82,8 +82,6 @@ public class Main {
                         }
                         default -> currentOption = MenuOptions.ALL;
                     }
-
-
                 }
                 case PRINT -> {
                     DAO dao = getDAO(sc);
@@ -121,23 +119,25 @@ public class Main {
                     DAO dao = getDAO(sc);
                     if (dao != null) {
                         switch (choice) {
-                            case PROJECT -> {
-                                Project project = new Project(0, "HAHAHAH");
-                                dao.create(project);
+                            case BUILDING ->{
+                                Building building = Building.Factory(sc, LOGGER);
+                                dao.create(building);
+                            }
+                            case BULLDOZER ->{
+
                             }
                             case CUSTOMER -> {
-                                Customer customer = new Customer(0, "NEW CUSTOMER", "+375 000 00 00", "newCustomer@gmail.com", 2);
+                                Customer customer = Customer.Factory(sc, LOGGER);
                                 dao.create(customer);
+                            }
+
+                            case PROJECT -> {
+                                Project project = Project.Factory(sc, LOGGER);
+                                dao.create(project);
                             }
                             case WORKER -> {
                                 Worker worker = Worker.Factory(sc, LOGGER);
                                 dao.create(worker);
-                            }
-
-
-                            case BUILDING ->{
-                                Building building = Building.Factory(sc, LOGGER);
-                                dao.create(building);
                             }
                         }
                     }
@@ -173,7 +173,6 @@ public class Main {
                     throw new RuntimeException("INVALID ENUM CASE");
                 }
             }
-
         }
         sc.close();
     }
@@ -251,6 +250,4 @@ public class Main {
         }
         return dao;
     }
-
-
 }

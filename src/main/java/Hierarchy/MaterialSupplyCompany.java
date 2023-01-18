@@ -81,4 +81,6 @@ public class MaterialSupplyCompany {
     public String simpleString(){
         return id + ",\"" + name + "\", \"" + phone + "\", \"" + email + "\", " + Buildings_id + ", " + Projects_id;
     }
+
+
 }
