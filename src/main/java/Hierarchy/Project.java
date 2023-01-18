@@ -34,6 +34,6 @@ public class Project {
     }
 
     public String simpleString(){
-        return id + ",\"" + name;
+        return "\"" + name + "\"";
     }
 }

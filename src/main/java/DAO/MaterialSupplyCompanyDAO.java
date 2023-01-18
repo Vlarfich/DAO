@@ -1,7 +1,5 @@
 package DAO;
 
-import DAO.DAO;
-import Hierarchy.Customer;
 import Hierarchy.MaterialSupplyCompany;
 
 import java.sql.*;
@@ -16,7 +14,7 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
     @Override
     public List<MaterialSupplyCompany> findAll() {
         List<MaterialSupplyCompany> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -37,7 +35,7 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
     @Override
     public MaterialSupplyCompany findEntityById(Integer id) {
         MaterialSupplyCompany user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -58,7 +56,7 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM MaterialSupplyCompany WHERE id = " + id.toString();
@@ -76,9 +74,17 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
     }
     @Override
     public boolean create(MaterialSupplyCompany entity) {
-        throw new UnsupportedOperationException();
-    }
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO MaterialSupplyCompany VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
 
+        }
+        return true;
+    }
     @Override
     public MaterialSupplyCompany update(MaterialSupplyCompany entity) {
         throw new UnsupportedOperationException();

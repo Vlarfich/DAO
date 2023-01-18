@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class Building {
     private int id;
     private String address;
@@ -34,6 +39,12 @@ public class Building {
     }
 
     public String simpleString(){
-        return id + ",\"" + address + "\"";
+        return "\"" + address + "\"";
+    }
+
+    public static Building Factory(Scanner sc, Logger logger){
+        logger.info("Enter name:");
+        String address = sc.nextLine();
+        return new Building(0, address);
     }
 }

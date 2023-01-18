@@ -1,8 +1,6 @@
 package DAO;
 
 import Hierarchy.Building;
-import Hierarchy.Customer;
-import Hierarchy.Project;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +18,7 @@ public class BuildingDAO implements DAO<Integer, Building> {
     @Override
     public List<Building> findAll() {
         List<Building> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -37,15 +35,17 @@ public class BuildingDAO implements DAO<Integer, Building> {
     @Override
     public Building findEntityById(Integer id) {
         Building user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
+
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String adress = rs.getString(2);
                 user = new Building(id, adress);
             }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -54,7 +54,7 @@ public class BuildingDAO implements DAO<Integer, Building> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM Buildings WHERE id = " + id.toString();
@@ -72,7 +72,16 @@ public class BuildingDAO implements DAO<Integer, Building> {
     }
     @Override
     public boolean create(Building entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO Buildings (adress) VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override

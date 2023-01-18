@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class Worker {
     private int id;
     private String name;
@@ -43,15 +48,25 @@ public class Worker {
 
     @Override
     public String toString() {
-        return "Worker{" +
+        return "\nWorker{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", Projects_id=" + Projects_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){
-        return id + ",\"" + name + "\", " +age + "\", " + Projects_id;
+        return "\"" + name + "\", " +age + ", " + Projects_id;
+    }
+
+    public static Worker Factory(Scanner sc, Logger logger){
+        logger.info("Enter name:");
+        String name = sc.nextLine();
+        logger.info("Enter age:");
+        int age = ScannerGetter.getInt(sc);
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new Worker(0, name, age, Project_id);
     }
 }

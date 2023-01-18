@@ -1,8 +1,5 @@
 package DAO;
 
-import DAO.DAO;
-import Hierarchy.Customer;
-import Hierarchy.VehSupplier;
 import Hierarchy.Worker;
 
 import java.sql.*;
@@ -17,7 +14,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     @Override
     public List<Worker> findAll() {
         List<Worker> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -36,7 +33,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     @Override
     public Worker findEntityById(Integer id) {
         Worker user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -55,7 +52,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM Workers WHERE id = " + id.toString();
@@ -73,9 +70,18 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     }
     @Override
     public boolean create(Worker entity) {
-        throw new UnsupportedOperationException();
-    }
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO Workers (name, age, Projects_id) VALUES (" + entity.simpleString() + ")";
+            System.out.println("INSERT INTO Workers (name, age, Projects_id) VALUES (" + entity.simpleString() + ")");
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
 
+        }
+        return true;
+    }
     @Override
     public Worker update(Worker entity) {
         throw new UnsupportedOperationException();

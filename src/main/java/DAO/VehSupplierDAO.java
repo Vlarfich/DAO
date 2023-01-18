@@ -1,10 +1,6 @@
 package DAO;
 
-import DAO.DAO;
-import Hierarchy.Customer;
-import Hierarchy.ProjectManager;
 import Hierarchy.VehSupplier;
-import Hierarchy.Worker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +14,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     @Override
     public List<VehSupplier> findAll() {
         List<VehSupplier> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -37,7 +33,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     @Override
     public VehSupplier findEntityById(Integer id) {
         VehSupplier user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -56,7 +52,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM VehSuppliers WHERE id = " + id.toString();
@@ -74,9 +70,17 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     }
     @Override
     public boolean create(VehSupplier entity) {
-        throw new UnsupportedOperationException();
-    }
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO VehSuppliers VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
 
+        }
+        return true;
+    }
     @Override
     public VehSupplier update(VehSupplier entity) {
         throw new UnsupportedOperationException();

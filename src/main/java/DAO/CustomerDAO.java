@@ -1,8 +1,6 @@
 package DAO;
 
-import DAO.DAO;
 import Hierarchy.Customer;
-import com.mysql.cj.util.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
     @Override
     public List<Customer> findAll() {
         List<Customer> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
 
@@ -37,7 +35,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
     @Override
     public Customer findEntityById(Integer id) {
         Customer user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -57,7 +55,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM Customers WHERE id = " + id.toString();
@@ -76,7 +74,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
 
     @Override
     public boolean create(Customer entity) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "INSERT INTO Customers VALUES (" + entity.simpleString() + ")";
@@ -90,7 +88,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
 
     @Override
     public Customer update(Customer entity) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "UPDATE Customers SET email = \"customer222222@solvd.com\" WHERE id = " + entity.getId();

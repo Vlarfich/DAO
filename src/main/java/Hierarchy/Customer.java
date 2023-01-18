@@ -70,4 +70,5 @@ public class Customer {
     public String simpleString(){
         return id + ",\"" + name + "\", \"" + phone + "\", \"" + email + "\", " + Projects_id;
     }
+
 }

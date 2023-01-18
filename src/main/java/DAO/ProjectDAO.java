@@ -1,7 +1,5 @@
 package DAO;
 
-import DAO.DAO;
-import Hierarchy.Customer;
 import Hierarchy.Project;
 
 import java.sql.Connection;
@@ -20,7 +18,7 @@ public class ProjectDAO implements DAO<Integer, Project> {
     @Override
     public List<Project> findAll() {
         List<Project> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -37,7 +35,7 @@ public class ProjectDAO implements DAO<Integer, Project> {
     @Override
     public Project findEntityById(Integer id) {
         Project user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -54,7 +52,7 @@ public class ProjectDAO implements DAO<Integer, Project> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM Projects WHERE id = " + id.toString();
@@ -72,9 +70,17 @@ public class ProjectDAO implements DAO<Integer, Project> {
     }
     @Override
     public boolean create(Project entity) {
-        throw new UnsupportedOperationException();
-    }
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO Projects (name) VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
 
+        }
+        return true;
+    }
     @Override
     public Project update(Project entity) {
         throw new UnsupportedOperationException();

@@ -1,9 +1,6 @@
 package DAO;
 
-import DAO.DAO;
-import Hierarchy.Customer;
 import Hierarchy.ProjectManager;
-import Hierarchy.Worker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +14,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
     @Override
     public List<ProjectManager> findAll() {
         List<ProjectManager> users = new ArrayList<>();
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
@@ -37,7 +34,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
     @Override
     public ProjectManager findEntityById(Integer id) {
         ProjectManager user = null;
-        try (Connection connection = ConnectorDB.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
@@ -56,7 +53,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectorDB.getConnection();
+        try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
             String sql = "DELETE FROM ProjectManager WHERE id = " + id.toString();
@@ -74,9 +71,17 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
     }
     @Override
     public boolean create(ProjectManager entity) {
-        throw new UnsupportedOperationException();
-    }
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO ProjectManager VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
 
+        }
+        return true;
+    }
     @Override
     public ProjectManager update(ProjectManager entity) {
         throw new UnsupportedOperationException();
