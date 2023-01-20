@@ -1,5 +1,6 @@
 package DAO;
 
+import Hierarchy.ProjectManager;
 import Hierarchy.VehSupplier;
 
 import java.sql.*;
@@ -83,6 +84,14 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     }
     @Override
     public VehSupplier update(VehSupplier entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE VehSupplier SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+        }
+        return entity;
     }
 }

@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.Building;
+import Hierarchy.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -85,7 +86,16 @@ public class BuildingDAO implements DAO<Integer, Building> {
 
     @Override
     public Building update(Building entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Buildings SET adress = \"" + entity.getAddress() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 
 }

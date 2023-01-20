@@ -85,6 +85,15 @@ public class CraneDAO implements DAO<Integer, Crane> {
     }
     @Override
     public Crane update(Crane entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Cranes SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

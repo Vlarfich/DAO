@@ -91,7 +91,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Customers SET email = \"customer222222@solvd.com\" WHERE id = " + entity.getId();
+            String sql = "UPDATE Customers SET email = \"" + entity.getEmail() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

@@ -1,10 +1,7 @@
 package Main;
 
 import DAO.*;
-import Hierarchy.Building;
-import Hierarchy.Customer;
-import Hierarchy.Project;
-import Hierarchy.Worker;
+import Hierarchy.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -119,31 +116,109 @@ public class Main {
                     DAO dao = getDAO(sc);
                     if (dao != null) {
                         switch (choice) {
-                            case BUILDING ->{
+                            case BUILDING -> {
                                 Building building = Building.Factory(sc, LOGGER);
                                 dao.create(building);
                             }
-                            case BULLDOZER ->{
-
+                            case BULLDOZER -> {
+                                Bulldozer bulldozer = Bulldozer.Factory(sc, LOGGER);
+                                dao.create(bulldozer);
                             }
                             case CUSTOMER -> {
                                 Customer customer = Customer.Factory(sc, LOGGER);
-                                dao.create(customer);
+                                //dao.create(customer);
                             }
-
+                            case CRANE -> {
+                                Crane crane = Crane.Factory(sc, LOGGER);
+                                dao.create(crane);
+                            }
+                            case CONCRETE_MIXER -> {
+                                ConcreteMixer concreteMixer = ConcreteMixer.Factory(sc, LOGGER);
+                                dao.create(concreteMixer);
+                            }
                             case PROJECT -> {
                                 Project project = Project.Factory(sc, LOGGER);
                                 dao.create(project);
+                            }
+                            case PROJECT_MANAGER -> {
+                                ProjectManager projectManager = ProjectManager.Factory(sc, LOGGER);
+                                dao.create(projectManager);
+                            }
+                            case VEH_SUPPLIER -> {
+                                VehSupplier vehSupplier = VehSupplier.Factory(sc, LOGGER);
+                                dao.create(vehSupplier);
+                            }
+                            case MATERIAL_SUPPLY_COMPANY -> {
+                                MaterialSupplyCompany materialSupplyCompany = MaterialSupplyCompany.Factory(sc, LOGGER);
+                                dao.create(materialSupplyCompany);
                             }
                             case WORKER -> {
                                 Worker worker = Worker.Factory(sc, LOGGER);
                                 dao.create(worker);
                             }
+                            default -> currentOption = MenuOptions.ADD;
                         }
                     }
                 }
                 case UPDATE -> {
                     DAO dao = getDAO(sc);
+                    if (dao != null) {
+                        LOGGER.info("Enter id:");
+                        int id = ScannerGetter.getInt(sc);
+                        switch (choice) {
+                            case BUILDING -> {
+                                LOGGER.info("Enter new address:");
+                                String address = sc.nextLine();
+                                dao.update(new Building(id, address));
+                            }
+                            case BULLDOZER -> {
+                                LOGGER.info("Enter new model:");
+                                String model = sc.nextLine();
+                                dao.update(new Bulldozer(id, model, 0, 0));
+                            }
+                            case CUSTOMER -> {
+                                LOGGER.info("Enter new email:");
+                                String email = sc.nextLine();
+                                //dao.update(new Customer(id, "", "", email, 0));
+                            }
+                            case CRANE -> {
+                                LOGGER.info("Enter new model:");
+                                String model = sc.nextLine();
+                                dao.update(new Crane(id, model, 0, 0, 0));
+                            }
+                            case CONCRETE_MIXER -> {
+                                LOGGER.info("Enter new model:");
+                                String model = sc.nextLine();
+                                dao.update(new ConcreteMixer(id, model, 0, 0, 0));
+                            }
+                            case PROJECT -> {
+                                LOGGER.info("Enter new name:");
+                                String name = sc.nextLine();
+                                dao.update(new Project(id, name));
+                            }
+                            case PROJECT_MANAGER -> {
+                                LOGGER.info("Enter new name:");
+                                String name = sc.nextLine();
+                                dao.update(new ProjectManager(id, name, 0, 0));
+                            }
+                            case VEH_SUPPLIER -> {
+                                LOGGER.info("Enter new name:");
+                                String name = sc.nextLine();
+                                dao.update(new VehSupplier(id, name, 0));
+                            }
+                            case MATERIAL_SUPPLY_COMPANY -> {
+                                LOGGER.info("Enter new name:");
+                                String name = sc.nextLine();
+                                dao.update(new MaterialSupplyCompany(id, name, "", "", 0, 0));
+                            }
+                            case WORKER -> {
+                                LOGGER.info("Enter new name:");
+                                String name = sc.nextLine();
+                                dao.update(new Worker(id, name, 0, 0));
+                            }
+                            default -> currentOption = MenuOptions.UPDATE;
+                        }
+                    }
                 }
                 case DELETE -> {
                     DAO dao = getDAO(sc);
@@ -190,7 +265,7 @@ public class Main {
                 (8)  * BULLDOZERS
                 (9)  * VEH_SUPPLIERS
                 (10) * BUILDINGS
-                (0) * BACK
+                (0)  * BACK
                 """);
         DAO dao = null;
         int k = -1;

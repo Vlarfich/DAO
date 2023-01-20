@@ -1,5 +1,6 @@
 package DAO;
 
+import Hierarchy.Customer;
 import Hierarchy.Project;
 
 import java.sql.Connection;
@@ -83,6 +84,15 @@ public class ProjectDAO implements DAO<Integer, Project> {
     }
     @Override
     public Project update(Project entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Projects SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

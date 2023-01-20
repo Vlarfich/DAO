@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.ConcreteMixer;
+import Hierarchy.Crane;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -90,6 +91,15 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
     }
     @Override
     public ConcreteMixer update(ConcreteMixer entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE ConcreteMixers SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

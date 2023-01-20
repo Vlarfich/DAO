@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.MaterialSupplyCompany;
+import Hierarchy.VehSupplier;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -80,13 +81,21 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
             String sql = "INSERT INTO MaterialSupplyCompany VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
-        catch (SQLException sqlException){
+        catch (SQLException ignored){
 
         }
         return true;
     }
     @Override
     public MaterialSupplyCompany update(MaterialSupplyCompany entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE MaterialSupplyCompany SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+        }
+        return entity;
     }
 }

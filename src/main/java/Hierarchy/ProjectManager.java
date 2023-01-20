@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class ProjectManager {
     private int id;
     private String name;
@@ -53,5 +58,15 @@ public class ProjectManager {
 
     public String simpleString(){
         return id + ",\"" + name + "\", " +age + "\", " + Projects_id;
+    }
+
+    public static ProjectManager Factory(Scanner sc, Logger logger) {
+        logger.info("Enter name:");
+        String name = sc.nextLine();
+        logger.info("Enter age:");
+        int age = ScannerGetter.getInt(sc);
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new ProjectManager(MAX_ID.getMAX_ID("ProjectManager"), name, age, Project_id);
     }
 }

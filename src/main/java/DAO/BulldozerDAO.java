@@ -1,6 +1,7 @@
 package DAO;
 
 import Hierarchy.Bulldozer;
+import Hierarchy.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,13 +69,32 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
     public boolean delete(Bulldozer entity) {
         return delete(entity.getId());
     }
+
     @Override
     public boolean create(Bulldozer entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "INSERT INTO Buldozers VALUES (" + entity.simpleString() + ")";
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return true;
     }
 
     @Override
     public Bulldozer update(Bulldozer entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Buldozers SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

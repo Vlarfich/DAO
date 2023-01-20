@@ -1,5 +1,6 @@
 package DAO;
 
+import Hierarchy.Bulldozer;
 import Hierarchy.Worker;
 
 import java.sql.*;
@@ -83,6 +84,15 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     }
     @Override
     public Worker update(Worker entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE Workers SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }

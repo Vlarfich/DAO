@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class VehSupplier {
     private int id;
     private String name;
@@ -43,5 +48,13 @@ public class VehSupplier {
 
     public String simpleString(){
         return id + ",\"" + name + ", " + Buildings_id;
+    }
+
+    public static VehSupplier Factory(Scanner sc, Logger logger) {
+        logger.info("Enter name:");
+        String name = sc.nextLine();
+        logger.info("Enter Buildings_id:");
+        int Buildings_id = ScannerGetter.getInt(sc);
+        return new VehSupplier(MAX_ID.getMAX_ID("VehSuppliers"), name, Buildings_id);
     }
 }

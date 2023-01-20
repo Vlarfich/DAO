@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class ConcreteMixer {
     private int id;
     private String model;
@@ -68,5 +73,17 @@ public class ConcreteMixer {
 
     public String simpleString(){
         return id + ",\"" + model + "\", " + volume + "\", " + Suppler_id + ", " + Projects_id;
+    }
+
+    public static ConcreteMixer Factory(Scanner sc, Logger logger) {
+        logger.info("Enter model:");
+        String model = sc.nextLine();
+        logger.info("Enter volume:");
+        int volume = ScannerGetter.getInt(sc);
+        logger.info("Enter Supplier_id:");
+        int Supplier_id = ScannerGetter.getInt(sc);
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new ConcreteMixer(MAX_ID.getMAX_ID("ConcreteMixers"), model, volume, Supplier_id, Project_id);
     }
 }

@@ -17,4 +17,17 @@ public class ScannerGetter {
         return res;
     }
 
+    public static double getDouble(Scanner sc){
+        boolean validDouble = false;
+        double res = 0;
+        do{
+            try{
+                res = Math.abs(Double.parseDouble(sc.nextLine()));
+                validDouble = true;
+            } catch (NumberFormatException ignored) {
+            }
+        }while(!validDouble);
+        return res;
+    }
+
 }

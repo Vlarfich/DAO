@@ -1,5 +1,10 @@
 package Hierarchy;
 
+import Main.ScannerGetter;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Scanner;
+
 public class Crane {
     private int id;
     private String model;
@@ -68,5 +73,17 @@ public class Crane {
 
     public String simpleString(){
         return id + ",\"" + model + "\", " + height + "\", " + Suppler_id + ", " + Projects_id;
+    }
+
+    public static Crane Factory(Scanner sc, Logger logger) {
+        logger.info("Enter model:");
+        String model = sc.nextLine();
+        logger.info("Enter height:");
+        int height = ScannerGetter.getInt(sc);
+        logger.info("Enter Supplier_id:");
+        int Supplier_id = ScannerGetter.getInt(sc);
+        logger.info("Enter Projects_id:");
+        int Project_id = ScannerGetter.getInt(sc);
+        return new Crane(MAX_ID.getMAX_ID("Cranes"), model, height, Supplier_id, Project_id);
     }
 }

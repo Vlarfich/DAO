@@ -1,5 +1,6 @@
 package DAO;
 
+import Hierarchy.Project;
 import Hierarchy.ProjectManager;
 
 import java.sql.*;
@@ -84,6 +85,15 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
     }
     @Override
     public ProjectManager update(ProjectManager entity) {
-        throw new UnsupportedOperationException();
+        try(Connection conn = ConnectionPool.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            String sql = "UPDATE ProjectManager SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException sqlException){
+
+        }
+        return entity;
     }
 }
