@@ -3,23 +3,38 @@ package Hierarchy;
 import Main.ScannerGetter;
 import org.apache.logging.log4j.Logger;
 
+import javax.xml.bind.annotation.*;
 import java.util.Scanner;
 
+@XmlRootElement(name = "worker")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"id", "name", "age", "Projects_id"})
 public class Worker {
-    private int id;
-    private String name;
-    private int age;
-    private int Projects_id;
+    @XmlAttribute
+    private Integer id;
 
-    public Worker(int id, String name, int age, int projects_id) {
+    private String name;
+
+    private Integer age;
+    @XmlAttribute
+    private Integer Projects_id;
+
+    public Worker() {
+    }
+
+    public Worker(Integer id, String name, Integer age, Integer projects_id) {
         this.id = id;
         this.name = name;
         this.age = age;
         Projects_id = projects_id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,19 +45,19 @@ public class Worker {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getProjects_id() {
+    public Integer getProjects_id() {
         return Projects_id;
     }
 
-    public void setProjects_id(int projects_id) {
+    public void setProjects_id(Integer projects_id) {
         Projects_id = projects_id;
     }
 
@@ -56,11 +71,11 @@ public class Worker {
                 '}';
     }
 
-    public String simpleString(){
-        return id + ", \"" + name + "\", " +age + ", " + Projects_id;
+    public String simpleString() {
+        return id + ", \"" + name + "\", " + age + ", " + Projects_id;
     }
 
-    public static Worker Factory(Scanner sc, Logger logger){
+    public static Worker Factory(Scanner sc, Logger logger) {
         logger.info("Enter name:");
         String name = sc.nextLine();
         logger.info("Enter age:");

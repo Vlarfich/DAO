@@ -45,13 +45,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        try {
-            System.out.println(unmarshall());
-            //marshal();
-        } catch (JAXBException | IOException e) {
-            throw new RuntimeException(e);
-        }
-        //Menu();
+        Menu();
     }
 
 
@@ -338,17 +332,4 @@ public class Main {
         return dao;
     }
 
-    public static void marshal() throws JAXBException, IOException {
-        Project book = new Project(1, "Project 1");
-        JAXBContext context = JAXBContext.newInstance(Project.class);
-        Marshaller mar= context.createMarshaller();
-        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(book, new File("./Project.xml"));
-    }
-
-    public static Project unmarshall() throws JAXBException, IOException {
-        JAXBContext context = JAXBContext.newInstance(Project.class);
-        return (Project) context.createUnmarshaller()
-                .unmarshal(new FileReader("./Project.xml"));
-    }
 }
