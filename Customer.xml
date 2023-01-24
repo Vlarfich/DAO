@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer id="1" projectsId="2">
+        <name>Vlad</name>
+        <phone>+375 29 514 12 58</phone>
+        <email>vladzhu607@gmail.com</email>
+    </customer>
+    <customer id="2" projectsId="3">
+        <name>Jeka</name>
+        <phone>+375 22 522 22 22</phone>
+        <email>jekador@gmail.com</email>
+    </customer>
+    <customer id="3" projectsId="2">
+        <name>Egor</name>
+        <phone>+375 11 111 11 11</phone>
+        <email>doregor@gmail.com</email>
+    </customer>
+</customers>

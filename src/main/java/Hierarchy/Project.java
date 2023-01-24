@@ -12,8 +12,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 @XmlRootElement(name = "project")
-//@XmlAccessorType (XmlAccessType.FIELD)
-//@XmlType(propOrder = {"id", "name", "startingDate", "workers"})
+@XmlAccessorType (XmlAccessType.PROPERTY)
+@XmlType(propOrder = {"id", "name", "startingDate", "workers"})
 public class Project {
     private Integer id;
     private String name;

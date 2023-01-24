@@ -12,6 +12,9 @@ public class Customer {
     private String email;
     private int Projects_id;
 
+    public Customer() {
+    }
+
     public Customer(int id, String name, String phone, String email, int projects_id) {
         this.id = id;
         this.name = name;
@@ -19,7 +22,6 @@ public class Customer {
         this.email = email;
         Projects_id = projects_id;
     }
-
 
     public int getId() {
         return id;

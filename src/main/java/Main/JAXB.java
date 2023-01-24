@@ -18,13 +18,11 @@ public class JAXB {
     private static final Logger LOGGER = LogManager.getLogger(JAXB.class);
 
     public static void main(String[] args) throws JAXBException, IOException {
-        Scanner sc = new Scanner(System.in);
-        Worker worker = Worker.Factory(sc, LOGGER);
-        marshalWorker(worker);
-        Project project = Project.Factory(sc, LOGGER);
-        project.addWorker(worker);
-        project.addWorker(worker);
-        marshalProject(project);
+        Project project = unmarshallProject();
+        LOGGER.info(project);
+        for(Worker w : project.getWorkers()){
+            LOGGER.info(w);
+        }
     }
 
     public static void marshalProject(Project project) throws JAXBException, IOException {

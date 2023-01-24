@@ -132,7 +132,7 @@ public class Main {
                             }
                             case CUSTOMER -> {
                                 Customer customer = Customer.Factory(sc, LOGGER);
-                                //dao.create(customer);
+                                dao.create(customer);
                             }
                             case CRANE -> {
                                 Crane crane = Crane.Factory(sc, LOGGER);
@@ -185,7 +185,7 @@ public class Main {
                             case CUSTOMER -> {
                                 LOGGER.info("Enter new email:");
                                 String email = sc.nextLine();
-                                //dao.update(new Customer(id, "", "", email, 0));
+                                dao.update(new Customer(id, "", "", email, 0));
                             }
                             case CRANE -> {
                                 LOGGER.info("Enter new model:");
