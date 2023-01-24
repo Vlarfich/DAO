@@ -5,6 +5,12 @@ import Hierarchy.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -39,7 +45,13 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Menu();
+        try {
+            System.out.println(unmarshall());
+            //marshal();
+        } catch (JAXBException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        //Menu();
     }
 
 
@@ -324,5 +336,19 @@ public class Main {
             }
         }
         return dao;
+    }
+
+    public static void marshal() throws JAXBException, IOException {
+        Project book = new Project(1, "Project 1");
+        JAXBContext context = JAXBContext.newInstance(Project.class);
+        Marshaller mar= context.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        mar.marshal(book, new File("./Project.xml"));
+    }
+
+    public static Project unmarshall() throws JAXBException, IOException {
+        JAXBContext context = JAXBContext.newInstance(Project.class);
+        return (Project) context.createUnmarshaller()
+                .unmarshal(new FileReader("./Project.xml"));
     }
 }
