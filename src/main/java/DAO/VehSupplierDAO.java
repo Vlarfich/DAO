@@ -41,8 +41,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                int age = rs.getInt(3);
-                int Buildings_id = rs.getInt(4);
+                int Buildings_id = rs.getInt(3);
                 user = new VehSupplier(id, name, Buildings_id);
             }
         } catch (SQLException e) {

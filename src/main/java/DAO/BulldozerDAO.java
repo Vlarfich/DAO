@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BulldozerDAO implements DAO<Integer, Bulldozer> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Buldozers";
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Bulldozers";
     public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM Buldozers WHERE id=?";
+            "SELECT * FROM Bulldozers WHERE id=?";
 
     @Override
     public List<Bulldozer> findAll() {
@@ -56,7 +56,7 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "DELETE FROM Buldozers WHERE id = " + id.toString();
+            String sql = "DELETE FROM Bulldozers WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -75,7 +75,7 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Buldozers VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO Bulldozers VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -89,7 +89,7 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Buldozers SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE Bulldozers SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

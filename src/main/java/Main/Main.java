@@ -48,7 +48,7 @@ public class Main {
         Menu();
     }
 
-
+    /**  menu */
     private static void Menu() {
         int c;
         Scanner sc = new Scanner(System.in);
@@ -222,8 +222,9 @@ public class Main {
                                 String name = sc.nextLine();
                                 dao.update(new Worker(id, name, 0, 0));
                             }
-                            default -> currentOption = MenuOptions.UPDATE;
+                            default -> currentOption = MenuOptions.ALL;
                         }
+                        currentOption = MenuOptions.ALL;
                     }
                 }
                 case DELETE -> {
@@ -236,6 +237,7 @@ public class Main {
                         } catch (SQLException ignored) {
                         }
                     }
+                    currentOption = MenuOptions.ALL;
                 }
                 case EXIT -> {
                     LOGGER.info("\n     * ARE YOU SURE (y/n):");

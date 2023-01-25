@@ -71,6 +71,6 @@ public class Bulldozer {
         int Buildings_id = ScannerGetter.getInt(sc);
         logger.info("Enter Projects_id:");
         int Project_id = ScannerGetter.getInt(sc);
-        return new Bulldozer(MAX_ID.getMAX_ID("Buldozers") + 1, name, Buildings_id, Project_id);
+        return new Bulldozer(MAX_ID.getMAX_ID("Bulldozers") + 1, name, Buildings_id, Project_id);
     }
 }

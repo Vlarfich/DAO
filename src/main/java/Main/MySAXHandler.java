@@ -20,9 +20,9 @@ public class MySAXHandler extends DefaultHandler {
             SAXParser saxParser = saxParserFactory.newSAXParser();
             MySAXHandler handler = new MySAXHandler();
             saxParser.parse(new File("./Customer.xml"), handler);
-            //Get Employees list
+
             List<Customer> empList = handler.getEmpList();
-            //print employee information
+
             for (Customer emp : empList)
                 System.out.println(emp);
         } catch (ParserConfigurationException | SAXException | IOException e) {
@@ -48,24 +48,22 @@ public class MySAXHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         if (qName.equalsIgnoreCase("customer")) {
-            // create a new Employee and put it in Map
             String id = attributes.getValue("id");
             String pid = attributes.getValue("projectsId");
             emp = new Customer();
             emp.setId(Integer.parseInt(id));
             emp.setProjects_id(Integer.parseInt(pid));
-            // initialize list
+
             if (empList == null)
                 empList = new ArrayList<>();
         } else if (qName.equalsIgnoreCase("name")) {
-            // set boolean values for fields, will be used in setting Employee variables
             bName = true;
         } else if (qName.equalsIgnoreCase("phone")) {
             bPhone = true;
         } else if (qName.equalsIgnoreCase("email")) {
             bEmail = true;
         }
-        // create the data container
+
         data = new StringBuilder();
     }
 

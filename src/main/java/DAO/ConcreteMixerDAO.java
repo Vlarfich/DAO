@@ -81,7 +81,7 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO ConcreteMixer VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO ConcreteMixers VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
