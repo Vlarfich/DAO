@@ -18,7 +18,7 @@ public interface WorkerMapper extends DAO<Integer, Worker> {
     @Select("SELECT id, name ,age, Projects_id FROM Workers")
     public abstract List<Worker> findAll();
 
-    @Select("SELECT id as wid, name, age, Projects_id WHERE wid=#{id}")
+    @Select("SELECT id , name, age, Projects_id FROM Workers WHERE id=#{id}")
     public abstract Worker findEntityById(@Param("id") Integer id);
 
     @Delete("DELETE FROM Workers WHERE id=#{id}")
