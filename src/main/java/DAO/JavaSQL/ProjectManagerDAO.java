@@ -1,20 +1,21 @@
-package DAO;
+package DAO.JavaSQL;
 
+import DAO.DAO;
+import DAO.JavaSQL.ConnectionPool;
 import Hierarchy.ProjectManager;
-import Hierarchy.VehSupplier;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM VehSuppliers";
+public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM ProjectManager";
     public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM VehSuppliers WHERE id=?";
+            "SELECT * FROM ProjectManager WHERE id=?";
 
     @Override
-    public List<VehSupplier> findAll() {
-        List<VehSupplier> users = new ArrayList<>();
+    public List<ProjectManager> findAll() {
+        List<ProjectManager> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
@@ -22,18 +23,19 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
-                int Buildings_id = rs.getInt(4);
-                users.add(new VehSupplier(id, name, Buildings_id));
+                int Projects_id = rs.getInt(4);
+                users.add(new ProjectManager(id, name, age, Projects_id));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         return users;
     }
 
     @Override
-    public VehSupplier findEntityById(Integer id) {
-        VehSupplier user = null;
+    public ProjectManager findEntityById(Integer id) {
+        ProjectManager user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
@@ -41,8 +43,9 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                int Buildings_id = rs.getInt(3);
-                user = new VehSupplier(id, name, Buildings_id);
+                int age = rs.getInt(3);
+                int Projects_id = rs.getInt(4);
+                user = new ProjectManager(id, name, age, Projects_id);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -55,7 +58,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "DELETE FROM VehSuppliers WHERE id = " + id.toString();
+            String sql = "DELETE FROM ProjectManager WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -65,15 +68,15 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     }
 
     @Override
-    public boolean delete(VehSupplier entity) {
+    public boolean delete(ProjectManager entity) {
         return delete(entity.getId());
     }
     @Override
-    public boolean create(VehSupplier entity) {
+    public boolean create(ProjectManager entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO VehSuppliers VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO ProjectManager VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -82,14 +85,15 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
         return true;
     }
     @Override
-    public VehSupplier update(VehSupplier entity) {
+    public ProjectManager update(ProjectManager entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE VehSupplier SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE ProjectManager SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
+
         }
         return entity;
     }

@@ -30,12 +30,10 @@ public class MySAXHandler extends DefaultHandler {
         }
     }
 
-    // List to hold Employees object
     private List<Customer> empList = null;
     private Customer emp = null;
     private StringBuilder data = null;
 
-    // getter method for employee list
     public List<Customer> getEmpList() {
         return empList;
     }

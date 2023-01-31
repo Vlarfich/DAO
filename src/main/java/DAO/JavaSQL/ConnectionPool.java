@@ -1,4 +1,4 @@
-package DAO;
+package DAO.JavaSQL;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

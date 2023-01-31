@@ -1,6 +1,8 @@
 package Hierarchy;
 
 import Main.ScannerGetter;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Property;
 import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.annotation.*;

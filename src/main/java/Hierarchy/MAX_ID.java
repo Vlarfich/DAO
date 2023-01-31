@@ -1,6 +1,6 @@
 package Hierarchy;
 
-import DAO.ConnectionPool;
+import DAO.JavaSQL.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

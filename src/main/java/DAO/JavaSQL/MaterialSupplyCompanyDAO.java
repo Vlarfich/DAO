@@ -1,29 +1,32 @@
-package DAO;
+package DAO.JavaSQL;
 
-import Hierarchy.Bulldozer;
-import Hierarchy.Worker;
+import DAO.DAO;
+import DAO.JavaSQL.ConnectionPool;
+import Hierarchy.MaterialSupplyCompany;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkerDAO implements DAO<Integer, Worker> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Workers";
+public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyCompany> {
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM MaterialSupplyCompany";
     public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM Workers WHERE id=?";
+            "SELECT * FROM MaterialSupplyCompany WHERE id=?";
 
     @Override
-    public List<Worker> findAll() {
-        List<Worker> users = new ArrayList<>();
+    public List<MaterialSupplyCompany> findAll() {
+        List<MaterialSupplyCompany> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
-                int age = rs.getInt(3);
-                int Projects_id = rs.getInt(4);
-                users.add(new Worker(id, name, age, Projects_id));
+                String phone = rs.getString(3);;
+                String email = rs.getString(4);
+                int Buildings_id = rs.getInt(5);
+                int Projects_id = rs.getInt(6);
+                users.add(new MaterialSupplyCompany(id, name, phone, email, Buildings_id, Projects_id));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -32,8 +35,8 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     }
 
     @Override
-    public Worker findEntityById(Integer id) {
-        Worker user = null;
+    public MaterialSupplyCompany findEntityById(Integer id) {
+        MaterialSupplyCompany user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
@@ -41,9 +44,11 @@ public class WorkerDAO implements DAO<Integer, Worker> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                int age = rs.getInt(3);
-                int Projects_id = rs.getInt(4);
-                user = new Worker(id, name, age, Projects_id);
+                String phone = rs.getString(3);;
+                String email = rs.getString(4);
+                int Buildings_id = rs.getInt(5);
+                int Projects_id = rs.getInt(6);
+                user = new MaterialSupplyCompany(id, name, phone, email, Buildings_id, Projects_id);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -56,7 +61,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "DELETE FROM Workers WHERE id = " + id.toString();
+            String sql = "DELETE FROM MaterialSupplyCompany WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -66,32 +71,31 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     }
 
     @Override
-    public boolean delete(Worker entity) {
+    public boolean delete(MaterialSupplyCompany entity) {
         return delete(entity.getId());
     }
     @Override
-    public boolean create(Worker entity) {
+    public boolean create(MaterialSupplyCompany entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Workers VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO MaterialSupplyCompany VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
-        catch (SQLException sqlException){
+        catch (SQLException ignored){
 
         }
         return true;
     }
     @Override
-    public Worker update(Worker entity) {
+    public MaterialSupplyCompany update(MaterialSupplyCompany entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Workers SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE MaterialSupplyCompany SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
-
         }
         return entity;
     }

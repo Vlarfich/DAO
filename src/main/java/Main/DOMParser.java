@@ -33,16 +33,15 @@ public class DOMParser {
             dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nodeList = doc.getElementsByTagName("project");
 
-            List<Project> userList = new ArrayList<Project>();
+            List<Project> projectList = new ArrayList<Project>();
 
             for (int i = 0; i < nodeList.getLength(); i++) {
-                userList.add(getUser(nodeList.item(i)));
+                projectList.add(getProject(nodeList.item(i)));
             }
 
-            for (Project emp : userList) {
+            for (Project emp : projectList) {
                 System.out.println(emp.toString());
                 for (Worker w : emp.getWorkers())
                     System.out.println("   " + w.toString());
@@ -53,7 +52,7 @@ public class DOMParser {
 
     }
 
-    private static Project getUser(Node node) {
+    private static Project getProject(Node node) {
         // XMLReaderDOM domReader = new XMLReaderDOM();
         Project user = new Project();
         if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -66,8 +65,6 @@ public class DOMParser {
             } catch (ParseException e) {
                 user.setStartingDate(new Date());
             }
-            System.out.println(((Element) node).getTagName());
-            System.out.println(node.hasChildNodes());
             NodeList nodeList = ((Element) node).getElementsByTagName("workers").item(0).getChildNodes();
             LinkedList<Worker> workers = new LinkedList<>();
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -93,7 +90,7 @@ public class DOMParser {
 
     private static String getTagValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodeList.item(0);
+        Node node = nodeList.item(0);
         return node.getNodeValue();
     }
 

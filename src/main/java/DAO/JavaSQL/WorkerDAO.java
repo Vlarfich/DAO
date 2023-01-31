@@ -1,30 +1,34 @@
-package DAO;
+package DAO.JavaSQL;
 
-import Hierarchy.Customer;
+import DAO.DAO;
+import DAO.JavaSQL.ConnectionPool;
+import Hierarchy.Worker;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO implements DAO<Integer, Customer> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Customers";
+public class WorkerDAO implements DAO<Integer, Worker> {
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Workers";
     public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM Customers WHERE id=?";
+            "SELECT * FROM Workers WHERE id=?";
 
     @Override
-    public List<Customer> findAll() {
-        List<Customer> users = new ArrayList<>();
+    public List<Worker> findAll() {
+        List<Worker> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
-
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
-                String phone = rs.getString(3);;
-                String email = rs.getString(4);;
-                int Projects_id = rs.getInt(5);
-                users.add(new Customer(id, name, phone, email, Projects_id));
+                int age = rs.getInt(3);
+                int Projects_id = rs.getInt(4);
+                users.add(new Worker(id, name, age, Projects_id));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -33,8 +37,8 @@ public class CustomerDAO implements DAO<Integer, Customer> {
     }
 
     @Override
-    public Customer findEntityById(Integer id) {
-        Customer user = null;
+    public Worker findEntityById(Integer id) {
+        Worker user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
@@ -42,10 +46,9 @@ public class CustomerDAO implements DAO<Integer, Customer> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                String phone = rs.getString(3);;
-                String email = rs.getString(4);;
-                int Projects_id = rs.getInt(5);
-                user = new Customer(id, name, phone, email, Projects_id);
+                int age = rs.getInt(3);
+                int Projects_id = rs.getInt(4);
+                user = new Worker(id, name, age, Projects_id);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -58,7 +61,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "DELETE FROM Customers WHERE id = " + id.toString();
+            String sql = "DELETE FROM Workers WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -68,16 +71,15 @@ public class CustomerDAO implements DAO<Integer, Customer> {
     }
 
     @Override
-    public boolean delete(Customer entity) {
+    public boolean delete(Worker entity) {
         return delete(entity.getId());
     }
-
     @Override
-    public boolean create(Customer entity) {
+    public boolean create(Worker entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Customers VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO Workers VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -85,13 +87,12 @@ public class CustomerDAO implements DAO<Integer, Customer> {
         }
         return true;
     }
-
     @Override
-    public Customer update(Customer entity) {
+    public Worker update(Worker entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Customers SET email = \"" + entity.getEmail() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE Workers SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

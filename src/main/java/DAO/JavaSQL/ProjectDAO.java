@@ -1,29 +1,32 @@
-package DAO;
+package DAO.JavaSQL;
 
-import Hierarchy.*;
+import DAO.DAO;
+import DAO.JavaSQL.ConnectionPool;
+import Hierarchy.Project;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CraneDAO implements DAO<Integer, Crane> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Cranes";
+public class ProjectDAO implements DAO<Integer, Project> {
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Projects";
     public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM Cranes WHERE id=?";
+            "SELECT * FROM Projects WHERE id=?";
 
     @Override
-    public List<Crane> findAll() {
-        List<Crane> users = new ArrayList<>();
+    public List<Project> findAll() {
+        List<Project> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String model = rs.getString(2);
-                int height = rs.getInt(3);
-                int Supplier_id = rs.getInt(4);
-                int Projects_id = rs.getInt(5);
-                users.add(new Crane(id, model, height, Supplier_id, Projects_id));
+                String name = rs.getString(2);
+                users.add(new Project(id, name));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -32,19 +35,16 @@ public class CraneDAO implements DAO<Integer, Crane> {
     }
 
     @Override
-    public Crane findEntityById(Integer id) {
-        Crane user = null;
+    public Project findEntityById(Integer id) {
+        Project user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
                      connection.prepareStatement(SQL_SELECT_USER_ID)) {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                String model = rs.getString(2);
-                int height = rs.getInt(3);
-                int Supplier_id = rs.getInt(4);
-                int Projects_id = rs.getInt(5);
-                user = new Crane(id, model, height, Supplier_id, Projects_id);
+                String name = rs.getString(2);
+                user = new Project(id, name);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -57,7 +57,7 @@ public class CraneDAO implements DAO<Integer, Crane> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "DELETE FROM Cranes WHERE id = " + id.toString();
+            String sql = "DELETE FROM Projects WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -67,15 +67,15 @@ public class CraneDAO implements DAO<Integer, Crane> {
     }
 
     @Override
-    public boolean delete(Crane entity) {
+    public boolean delete(Project entity) {
         return delete(entity.getId());
     }
     @Override
-    public boolean create(Crane entity) {
+    public boolean create(Project entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "INSERT INTO Cranes VALUES (" + entity.simpleString() + ")";
+            String sql = "INSERT INTO Projects VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
@@ -84,11 +84,11 @@ public class CraneDAO implements DAO<Integer, Crane> {
         return true;
     }
     @Override
-    public Crane update(Crane entity) {
+    public Project update(Project entity) {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Cranes SET model = \"" + entity.getModel() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE Projects SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){

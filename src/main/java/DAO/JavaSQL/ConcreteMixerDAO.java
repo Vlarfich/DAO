@@ -1,5 +1,6 @@
-package DAO;
+package DAO.JavaSQL;
 
+import DAO.DAO;
 import Hierarchy.ConcreteMixer;
 import Hierarchy.Crane;
 

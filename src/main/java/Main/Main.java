@@ -1,17 +1,15 @@
 package Main;
 
 import DAO.*;
+import DAO.JavaSQL.*;
+import DAO.MyBatis.Service.WorkerService;
+import DAO.MyBatis.WorkerMapper;
 import Hierarchy.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -45,7 +43,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Menu();
+        WorkerService workerService = new WorkerService();
+        System.out.println(workerService.getData(5));
+        //Menu();
     }
 
     /**  menu */

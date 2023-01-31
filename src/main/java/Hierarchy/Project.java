@@ -82,7 +82,7 @@ public class Project {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return "Project{" + "id=" + id + ", name='" + name + '\'' + ", startingDate=" + sdf.format(startingDate) + '}';
     }
 
