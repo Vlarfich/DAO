@@ -22,11 +22,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- * Java DOM Parser to Read XML File in Java
- *
- * @author Ramesh Fadatare
- */
 
 public class DOMParser {
     public static void main(String[] args) {

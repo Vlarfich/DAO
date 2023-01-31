@@ -1,7 +1,11 @@
 package Hierarchy;
 
+import Main.CustomDateDeserializer;
+import Main.CustomDateSerializer;
 import Main.DateAdapter;
 import Main.ScannerGetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.annotation.*;
@@ -17,6 +21,8 @@ import java.util.Scanner;
 public class Project {
     private Integer id;
     private String name;
+    @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonDeserialize(using = CustomDateDeserializer.class)
     private Date startingDate = new Date();
 
 

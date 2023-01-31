@@ -1,10 +1,13 @@
 package Hierarchy;
 
 import Main.ScannerGetter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
-
+@JsonRootName(value = "Customer")
 public class Customer {
     private int id;
     private String name;
@@ -15,7 +18,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int id, String name, String phone, String email, int projects_id) {
+    @JsonCreator
+    public Customer(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                    @JsonProperty("email") String email, @JsonProperty("projects_id")int projects_id) {
         this.id = id;
         this.name = name;
         this.phone = phone;
