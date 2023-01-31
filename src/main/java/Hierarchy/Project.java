@@ -4,6 +4,7 @@ import Main.CustomDateDeserializer;
 import Main.CustomDateSerializer;
 import Main.DateAdapter;
 import Main.ScannerGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,7 @@ import java.util.Scanner;
 @XmlRootElement(name = "project")
 @XmlAccessorType (XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"id", "name", "startingDate", "workers"})
+@JsonRootName(value = "Project", namespace = "Projects")
 public class Project {
     private Integer id;
     private String name;

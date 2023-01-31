@@ -1,15 +1,18 @@
 package Hierarchy;
 
 import Main.ScannerGetter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
 public class Building {
     private int id;
+    @JsonProperty("name")
     private String address;
-
-    public Building(int id, String address) {
+    @JsonCreator
+    public Building(int id, @JsonProperty("name") String address) {
         this.id = id;
         this.address = address;
     }

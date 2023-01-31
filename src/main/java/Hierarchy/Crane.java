@@ -1,10 +1,12 @@
 package Hierarchy;
 
 import Main.ScannerGetter;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+@JsonRootName(value = "Customer")
 public class Crane {
     private int id;
     private String model;

@@ -40,7 +40,7 @@ public class Jackson {
         project.addWorker(worker);
         project.addWorker(worker);
 
-        String projectResult = mapper.writeValueAsString(project);
+        String projectResult = mapper.enable(SerializationFeature.WRAP_ROOT_VALUE).writeValueAsString(project);
         System.out.println(projectResult);
 
         String projectJSON = (new BufferedReader(new FileReader("Project.json"))).readLine();
