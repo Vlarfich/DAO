@@ -70,13 +70,13 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "\nCustomer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", Projects_id=" + Projects_id +
-                "}\n";
+                "}";
     }
 
     public String simpleString() {

@@ -28,6 +28,6 @@ public interface WorkerMapper extends DAO<Integer, Worker> {
     @Insert("INSERT INTO Workers (name, age, Projects_id) VALUES (#{name}, #{age}, #{Projects_id});")
     public abstract boolean create(Worker entity);
 
-    @Update("UPDATE Projects set name = #{name}, age = #{age}, #{Projects_id} WHERE id=#{id}")
+    @Update("UPDATE Workers set name = #{name}, age = #{age}, #{Projects_id} WHERE id=#{id}")
     public abstract Worker update(Worker entity);
 }

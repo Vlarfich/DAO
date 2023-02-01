@@ -48,12 +48,12 @@ public class ProjectManager {
 
     @Override
     public String toString() {
-        return "ProjectManager{" +
+        return "\nProjectManager{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", Projects_id=" + Projects_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){

@@ -14,11 +14,11 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WorkerService {
+public class WorkerService implements IService<Integer, Worker>{
     public WorkerService()  {
     }
 
-    public void save(Worker worker) {
+    public void create(Worker worker) {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         WorkerMapper mapper = session.getMapper(WorkerMapper.class);
         mapper.create(worker);
@@ -42,7 +42,7 @@ public class WorkerService {
         session.close();
     }
 
-    public Worker getData(Integer id) {
+    public Worker read(Integer id) {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         WorkerMapper mapper = session.getMapper(WorkerMapper.class);
         Worker worker = mapper.findEntityById(id);
@@ -50,7 +50,7 @@ public class WorkerService {
         return worker;
     }
 
-    public List<Worker> getData() {
+    public List<Worker> read() {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
         WorkerMapper mapper = session.getMapper(WorkerMapper.class);
         List<Worker> workers = mapper.findAll();

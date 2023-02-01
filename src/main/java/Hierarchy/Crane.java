@@ -64,13 +64,13 @@ public class Crane {
 
     @Override
     public String toString() {
-        return "Crane{" +
+        return "\nCrane{" +
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", height=" + height +
                 ", Suppler_id=" + Suppler_id +
                 ", Projects_id=" + Projects_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){

@@ -54,12 +54,12 @@ public class Bulldozer {
 
     @Override
     public String toString() {
-        return "Bulldozer{" +
+        return "\nBulldozer{" +
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", Suppler_id=" + Suppler_id +
                 ", Projects_id=" + Projects_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){

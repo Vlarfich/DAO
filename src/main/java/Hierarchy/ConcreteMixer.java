@@ -62,13 +62,13 @@ public class ConcreteMixer {
 
     @Override
     public String toString() {
-        return "ConcreteMixer{" +
+        return "\nConcreteMixer{" +
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", volume=" + volume +
                 ", Suppler_id=" + Suppler_id +
                 ", Projects_id=" + Projects_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){

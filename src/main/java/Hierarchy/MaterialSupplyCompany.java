@@ -73,14 +73,14 @@ public class MaterialSupplyCompany {
 
     @Override
     public String toString() {
-        return "MaterialSupplyCompany{" +
+        return "\nMaterialSupplyCompany{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", Buildings_id=" + Buildings_id +
                 ", Projects_id=" + Projects_id +
-                "}\n";
+                "}";
     }
 
     public String simpleString(){

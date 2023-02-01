@@ -39,11 +39,11 @@ public class VehSupplier {
 
     @Override
     public String toString() {
-        return "VehSuppliers{" +
+        return "\nVehSuppliers{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", Buildings_id=" + Buildings_id +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){

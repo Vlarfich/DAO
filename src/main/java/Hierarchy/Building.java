@@ -35,10 +35,10 @@ public class Building {
 
     @Override
     public String toString() {
-        return "Building{" +
+        return "\nBuilding{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                '}' + "\n";
+                '}';
     }
 
     public String simpleString(){
