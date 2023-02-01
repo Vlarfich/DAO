@@ -29,5 +29,5 @@ public interface IConcreteMixerMapper {
 
     @Update("UPDATE ConcreteMixer set model = #{model}, volume = #{volume}, Suppliers_id = #{Supplier_id}, " +
             "Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract ConcreteMixer update_(ConcreteMixer entity);
+    public abstract boolean update_(ConcreteMixer entity);
 }

@@ -13,18 +13,18 @@ public interface IWorkerMapper {
             @Result(property = "Projects_id", column = "Projects_id")
     })
     @Select("SELECT id, name ,age, Projects_id FROM Workers")
-    public abstract List<Worker> readALL();
+    public List<Worker> readALL();
 
     @Select("SELECT id , name, age, Projects_id FROM Workers WHERE id=#{id}")
-    public abstract Worker readID(@Param("id") Integer id);
+    public Worker readID(@Param("id") Integer id);
 
     @Delete("DELETE FROM Workers WHERE id=#{id}")
-    public abstract boolean deleteID(@Param("id") Integer id);
+    public boolean deleteID(@Param("id") Integer id);
 
 
     @Insert("INSERT INTO Workers (name, age, Projects_id) VALUES (#{name}, #{age}, #{Projects_id});")
-    public abstract boolean create_(Worker entity);
+    public boolean create_(Worker entity);
 
     @Update("UPDATE Workers SET name = #{name} WHERE id = #{id}")
-    public abstract boolean update_(Worker entity);
+    public boolean update_(Worker entity);
 }

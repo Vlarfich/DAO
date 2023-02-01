@@ -26,5 +26,5 @@ public interface IBulldozerMapper {
     public abstract boolean create_(Bulldozer entity);
 
     @Update("UPDATE Bulldozers set model = #{model}, Suppliers_id = #{Supplier_id}, Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract Bulldozer update_(Bulldozer entity);
+    public abstract boolean update_(Bulldozer entity);
 }

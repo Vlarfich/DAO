@@ -8,20 +8,20 @@ import java.util.List;
 public interface IBuildingMapper {
     @Results({
             @Result(property = "id", column = "id"),
-            @Result(property = "address", column = "adress"),
+            @Result(property = "adress", column = "address"),
     })
-    @Select("SELECT id, address FROM Buildings")
-    public abstract List<Building> readALL();
+    @Select("SELECT id, adress FROM Buildings")
+    public List<Building> readALL();
 
-    @Select("SELECT id , address FROM Buildings WHERE id=#{id}")
-    public abstract Building readID(@Param("id") Integer id);
+    @Select("SELECT id , adress FROM Buildings WHERE id=#{id}")
+    public Building readID(@Param("id") Integer id);
 
     @Delete("DELETE FROM Buildings WHERE id=#{id}")
-    public abstract boolean deleteID(@Param("id") Integer id);
+    public boolean deleteID(@Param("id") Integer id);
 
-    @Insert("INSERT INTO Buildings (address) VALUES (#{address});")
-    public abstract boolean create_(Building entity);
+    @Insert("INSERT INTO Buildings (adress) VALUES (#{address});")
+    public boolean create_(Building entity);
 
-    @Update("UPDATE Buildings set address = #{address} WHERE id=#{id}")
-    public abstract Building update_(Building entity);
+    @Update("UPDATE Buildings set adress = #{address} WHERE id=#{id}")
+    public boolean update_(Building entity);
 }

@@ -26,5 +26,5 @@ public interface ICustomerMapper {
     public abstract boolean create_(Customer entity);
 
     @Update("UPDATE Customers set name = #{name}, phone = #{phone}, email = #{email}, Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract Customer update_(Customer entity);
+    public abstract boolean update_(Customer entity);
 }

@@ -24,5 +24,5 @@ public interface IVehSupplierMapper {
     public abstract boolean create_(VehSupplier entity);
 
     @Update("UPDATE VehSuppliers set name = #{name}, Buildings_id = #{Buildings_id} WHERE id=#{id}")
-    public abstract VehSupplier update_(VehSupplier entity);
+    public abstract boolean update_(VehSupplier entity);
 }

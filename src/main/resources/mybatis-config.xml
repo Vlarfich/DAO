@@ -19,5 +19,14 @@
     </environments>
     <mappers>
         <mapper class="DAO.myBatis.mappers.IWorkerMapper" />
+        <mapper class="DAO.myBatis.mappers.ICustomerMapper" />
+        <mapper class="DAO.myBatis.mappers.IVehSupplierMapper" />
+        <mapper class="DAO.myBatis.mappers.IBuildingMapper" />
+        <mapper class="DAO.myBatis.mappers.IBulldozerMapper" />
+        <mapper class="DAO.myBatis.mappers.IConcreteMixerMapper" />
+        <mapper class="DAO.myBatis.mappers.ICraneMapper" />
+        <mapper class="DAO.myBatis.mappers.IMaterialSupplyCompanyMapper" />
+        <mapper class="DAO.myBatis.mappers.IProjectManagerMapper" />
+        <mapper class="DAO.myBatis.mappers.IProjectMapper" />
     </mappers>
 </configuration>

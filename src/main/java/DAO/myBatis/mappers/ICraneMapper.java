@@ -29,5 +29,5 @@ public interface ICraneMapper {
 
     @Update("UPDATE Cranes set model = #{model}, heigth = #{height}, Suppliers_id = #{Supplier_id}, " +
             "Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract Crane update_(Crane entity);
+    public abstract boolean update_(Crane entity);
 }

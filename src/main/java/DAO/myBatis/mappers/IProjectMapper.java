@@ -24,5 +24,5 @@ public interface IProjectMapper {
     public abstract boolean create_(Project entity);
 
     @Update("UPDATE Projects set name = #{name} WHERE id=#{id}")
-    public abstract Project update_(Project entity);
+    public abstract boolean update_(Project entity);
 }

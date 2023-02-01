@@ -2,6 +2,8 @@ package main.menuUtils;
 
 import DAO.DAO;
 import DAO.javaSQL.*;
+import DAO.myBatis.service.BuildingService;
+import DAO.myBatis.service.CustomerService;
 import DAO.myBatis.service.WorkerService;
 import org.apache.logging.log4j.Logger;
 
@@ -68,7 +70,10 @@ public class GetDAO {
                 choice = AvailableOptions.PROJECT;
             }
             case 2 -> {
-                dao = new CustomerDAO();
+                if (myBatis)
+                    dao = new CustomerService();
+                else
+                    dao = new CustomerDAO();
                 choice = AvailableOptions.CUSTOMER;
             }
             case 3 -> {
@@ -103,7 +108,10 @@ public class GetDAO {
                 choice = AvailableOptions.VEH_SUPPLIER;
             }
             case 10 -> {
-                dao = new BuildingDAO();
+                if (myBatis)
+                    dao = new BuildingService();
+                else
+                    dao = new BuildingDAO();
                 choice = AvailableOptions.BUILDING;
             }
             default -> {
