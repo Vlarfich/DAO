@@ -17,7 +17,7 @@ public class BuildingDAO implements DAO<Integer, Building> {
     public static final String SQL_SELECT_USER_ID = "SELECT * FROM Buildings WHERE id=?";
 
     @Override
-    public List<Building> findAll() {
+    public List<Building> read() {
         List<Building> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -34,7 +34,7 @@ public class BuildingDAO implements DAO<Integer, Building> {
     }
 
     @Override
-    public Building findEntityById(Integer id) {
+    public Building read(Integer id) {
         Building user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

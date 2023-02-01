@@ -14,7 +14,7 @@ public class CraneDAO implements DAO<Integer, Crane> {
             "SELECT * FROM Cranes WHERE id=?";
 
     @Override
-    public List<Crane> findAll() {
+    public List<Crane> read() {
         List<Crane> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -34,7 +34,7 @@ public class CraneDAO implements DAO<Integer, Crane> {
     }
 
     @Override
-    public Crane findEntityById(Integer id) {
+    public Crane read(Integer id) {
         Crane user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

@@ -23,12 +23,17 @@ public class GetDAO {
         BACK
     }
     private static Logger LOGGER;
-
+    private static boolean myBatis = false;
     private static GetDAO.AvailableOptions choice = GetDAO.AvailableOptions.BACK;
 
     public static GetDAO.AvailableOptions getChoice(){
         return choice;
     }
+
+    private static void setMyBatis(boolean f){
+        myBatis = f;
+    }
+
 
     public static DAO getDAO(Scanner sc) {
         LOGGER.info("""

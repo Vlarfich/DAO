@@ -14,7 +14,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
             "SELECT * FROM Customers WHERE id=?";
 
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> read() {
         List<Customer> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -35,7 +35,7 @@ public class CustomerDAO implements DAO<Integer, Customer> {
     }
 
     @Override
-    public Customer findEntityById(Integer id) {
+    public Customer read(Integer id) {
         Customer user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

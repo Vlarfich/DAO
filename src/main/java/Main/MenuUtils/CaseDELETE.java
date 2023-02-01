@@ -17,10 +17,7 @@ public class CaseDELETE {
         if (dao != null) {
             LOGGER.info("Enter id:");
             int id = ScannerGetter.getInt(sc);
-            try {
-                dao.delete(id);
-            } catch (SQLException ignored) {
-            }
+            dao.delete(id);
         }
 
         return currentOption;

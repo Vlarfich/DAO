@@ -16,10 +16,10 @@ public interface WorkerMapper extends DAO<Integer, Worker> {
             @Result(property = "Projects_id", column = "Projects_id")
     })
     @Select("SELECT id, name ,age, Projects_id FROM Workers")
-    public abstract List<Worker> findAll();
+    public abstract List<Worker> read();
 
     @Select("SELECT id , name, age, Projects_id FROM Workers WHERE id=#{id}")
-    public abstract Worker findEntityById(@Param("id") Integer id);
+    public abstract Worker read(@Param("id") Integer id);
 
     @Delete("DELETE FROM Workers WHERE id=#{id}")
     public abstract boolean delete(@Param("id") Integer id);

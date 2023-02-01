@@ -12,7 +12,7 @@ public class CaseUPDATE {
 
 
     public static Main.MenuOptions update(Logger LOGGER, Scanner sc, GetDAO.AvailableOptions choice){
-        Main.MenuOptions currentOption = Main.MenuOptions.UPDATE;
+        Main.MenuOptions currentOption = Main.MenuOptions.ALL;
         DAO dao = GetDAO.getDAO(sc);
         choice = GetDAO.getChoice();
         if (dao != null) {

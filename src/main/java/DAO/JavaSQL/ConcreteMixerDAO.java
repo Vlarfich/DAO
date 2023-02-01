@@ -10,11 +10,10 @@ import java.util.List;
 
 public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
     public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM ConcreteMixers";
-    public static final String SQL_SELECT_USER_ID =
-            "SELECT * FROM ConcreteMixers WHERE id=?";
+    public static final String SQL_SELECT_USER_ID = "SELECT * FROM ConcreteMixers WHERE id=?";
 
     @Override
-    public List<ConcreteMixer> findAll() {
+    public List<ConcreteMixer> read() {
         List<ConcreteMixer> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -30,13 +29,13 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return users;
     }
 
     @Override
-    public ConcreteMixer findEntityById(Integer id) {
+    public ConcreteMixer read(Integer id) {
         ConcreteMixer user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
@@ -54,7 +53,7 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return user;
     }
@@ -68,7 +67,7 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
-
+            System.err.println(sqlException.getMessage());
         }
         return true;
     }

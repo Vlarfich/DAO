@@ -14,7 +14,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
             "SELECT * FROM VehSuppliers WHERE id=?";
 
     @Override
-    public List<VehSupplier> findAll() {
+    public List<VehSupplier> read() {
         List<VehSupplier> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -33,7 +33,7 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
     }
 
     @Override
-    public VehSupplier findEntityById(Integer id) {
+    public VehSupplier read(Integer id) {
         VehSupplier user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

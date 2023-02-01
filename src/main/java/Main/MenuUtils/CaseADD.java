@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CaseADD {
 
     public static Main.MenuOptions add(Logger LOGGER, Scanner sc, GetDAO.AvailableOptions choice){
-        Main.MenuOptions currentOption = Main.MenuOptions.ADD;
+        Main.MenuOptions currentOption = Main.MenuOptions.ALL;
         DAO dao = GetDAO.getDAO(sc);
         choice = GetDAO.getChoice();
         if (dao != null) {

@@ -14,7 +14,7 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
             "SELECT * FROM Bulldozers WHERE id=?";
 
     @Override
-    public List<Bulldozer> findAll() {
+    public List<Bulldozer> read() {
         List<Bulldozer> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -33,7 +33,7 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
     }
 
     @Override
-    public Bulldozer findEntityById(Integer id) {
+    public Bulldozer read(Integer id) {
         Bulldozer user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

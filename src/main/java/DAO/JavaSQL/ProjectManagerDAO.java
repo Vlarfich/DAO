@@ -14,7 +14,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
             "SELECT * FROM ProjectManager WHERE id=?";
 
     @Override
-    public List<ProjectManager> findAll() {
+    public List<ProjectManager> read() {
         List<ProjectManager> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -34,7 +34,7 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
     }
 
     @Override
-    public ProjectManager findEntityById(Integer id) {
+    public ProjectManager read(Integer id) {
         ProjectManager user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =

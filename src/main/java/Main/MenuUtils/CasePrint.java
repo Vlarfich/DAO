@@ -2,17 +2,15 @@ package Main.MenuUtils;
 
 import DAO.DAO;
 import Main.Main;
-import com.mysql.cj.util.StringUtils;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collection;
 import java.util.Scanner;
 
 public class CasePrint {
 
 
     public static Main.MenuOptions print(Logger LOGGER, Scanner sc, GetDAO.AvailableOptions choice) {
-        Main.MenuOptions currentOption = Main.MenuOptions.PRINT;
+        Main.MenuOptions currentOption = Main.MenuOptions.ALL;
         DAO dao = GetDAO.getDAO(sc);
         choice = GetDAO.getChoice();
         if (dao != null) {
@@ -34,12 +32,12 @@ public class CasePrint {
             } while (!validInt || k < 0 || k > 2);
             switch (k) {
                 case 1 -> {
-                    LOGGER.info(dao.findAll());
+                    LOGGER.info(dao.read());
                 }
                 case 2 -> {
                     LOGGER.info(" ENTER ID:");
                     k = sc.nextInt();
-                    LOGGER.info(dao.findEntityById(k));
+                    LOGGER.info(dao.read(k));
                 }
                 default -> currentOption = Main.MenuOptions.PRINT;
             }

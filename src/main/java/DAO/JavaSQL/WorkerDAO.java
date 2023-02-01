@@ -18,7 +18,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
             "SELECT * FROM Workers WHERE id=?";
 
     @Override
-    public List<Worker> findAll() {
+    public List<Worker> read() {
         List<Worker> users = new ArrayList<>();
         try (Connection connection = ConnectionPool.getConnection();
              Statement statement = connection.createStatement()) {
@@ -37,7 +37,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
     }
 
     @Override
-    public Worker findEntityById(Integer id) {
+    public Worker read(Integer id) {
         Worker user = null;
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement =
