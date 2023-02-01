@@ -11,13 +11,13 @@
             </transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="${db.url} + ${db.name}"/>
+                <property name="url" value="${db.url}${db.name}"/>
                 <property name="username" value="${db.user}"/>
                 <property name="password" value="${db.password}"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper class="DAO.MyBatis.WorkerMapper" />
+        <mapper class="DAO.myBatis.mappers.IWorkerMapper" />
     </mappers>
 </configuration>
