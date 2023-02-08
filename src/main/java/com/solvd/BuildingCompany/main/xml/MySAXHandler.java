@@ -1,4 +1,4 @@
-package com.solvd.BuildingCompany.main;
+package com.solvd.BuildingCompany.main.xml;
 
 import com.solvd.BuildingCompany.hierarchy.Customer;
 import org.xml.sax.Attributes;

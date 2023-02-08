@@ -1,4 +1,4 @@
-package com.solvd.BuildingCompany.main;
+package com.solvd.BuildingCompany.main.json;
 
 import com.solvd.BuildingCompany.hierarchy.Customer;
 import com.solvd.BuildingCompany.hierarchy.MAX_ID;

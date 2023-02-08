@@ -1,4 +1,4 @@
-package com.solvd.BuildingCompany.main;
+package com.solvd.BuildingCompany.main.xml;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;

@@ -1,8 +1,8 @@
 package com.solvd.BuildingCompany.hierarchy;
 
-import com.solvd.BuildingCompany.main.CustomDateDeserializer;
-import com.solvd.BuildingCompany.main.CustomDateSerializer;
-import com.solvd.BuildingCompany.main.DateAdapter;
+import com.solvd.BuildingCompany.main.json.CustomDateDeserializer;
+import com.solvd.BuildingCompany.main.json.CustomDateSerializer;
+import com.solvd.BuildingCompany.main.xml.DateAdapter;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

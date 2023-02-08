@@ -1,4 +1,4 @@
-package com.solvd.BuildingCompany.main;
+package com.solvd.BuildingCompany.main.xml;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.DateFormat;

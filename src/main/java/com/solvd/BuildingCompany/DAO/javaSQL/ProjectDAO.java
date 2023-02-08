@@ -2,14 +2,12 @@ package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
 import com.solvd.BuildingCompany.hierarchy.Project;
+import org.apache.logging.log4j.LogManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ProjectDAO implements DAO<Integer, Project> {
     public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM Projects";
@@ -28,7 +26,7 @@ public class ProjectDAO implements DAO<Integer, Project> {
                 users.add(new Project(id, name));
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LogManager.getLogger(ProjectDAO.class).warn(e.getMessage());
         }
         return users;
     }
@@ -46,21 +44,19 @@ public class ProjectDAO implements DAO<Integer, Project> {
                 user = new Project(id, name);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LogManager.getLogger(ProjectDAO.class).warn(e.getMessage());
         }
         return user;
     }
 
     @Override
     public boolean delete(Integer id) {
-        try(Connection conn = ConnectionPool.getConnection();
-            Statement stmt = conn.createStatement();
-        ) {
+        try (Connection conn = ConnectionPool.getConnection();
+             Statement stmt = conn.createStatement()) {
             String sql = "DELETE FROM Projects WHERE id = " + id.toString();
             stmt.executeUpdate(sql);
-        }
-        catch (SQLException sqlException){
-
+        } catch (SQLException sqlException) {
+            LogManager.getLogger(ProjectDAO.class).warn(sqlException.getMessage());
         }
         return true;
     }
@@ -69,29 +65,27 @@ public class ProjectDAO implements DAO<Integer, Project> {
     public boolean delete(Project entity) {
         return delete(entity.getId());
     }
+
     @Override
     public boolean create(Project entity) {
-        try(Connection conn = ConnectionPool.getConnection();
-            Statement stmt = conn.createStatement();
-        ) {
+        try (Connection conn = ConnectionPool.getConnection();
+             Statement stmt = conn.createStatement()) {
             String sql = "INSERT INTO Projects VALUES (" + entity.simpleString() + ")";
             stmt.executeUpdate(sql);
-        }
-        catch (SQLException sqlException){
-
+        } catch (SQLException sqlException) {
+            LogManager.getLogger(ProjectDAO.class).warn(sqlException.getMessage());
         }
         return true;
     }
+
     @Override
     public Project update(Project entity) {
-        try(Connection conn = ConnectionPool.getConnection();
-            Statement stmt = conn.createStatement();
-        ) {
+        try (Connection conn = ConnectionPool.getConnection();
+             Statement stmt = conn.createStatement()) {
             String sql = "UPDATE Projects SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
-        }
-        catch (SQLException sqlException){
-
+        } catch (SQLException sqlException) {
+            LogManager.getLogger(ProjectDAO.class).warn(sqlException.getMessage());
         }
         return entity;
     }
