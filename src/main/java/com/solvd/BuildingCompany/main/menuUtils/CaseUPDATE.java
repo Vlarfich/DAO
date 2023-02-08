@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class CaseUPDATE {
 
 
-    public static Main.MenuOptions update(Logger LOGGER, Scanner sc, GetDAO.AvailableOptions choice){
+    public static Main.MenuOptions update(Logger LOGGER, Scanner sc, GetDAO.AvailableOptions choice) {
         Main.MenuOptions currentOption = Main.MenuOptions.ALL;
         DAO dao = GetDAO.getDAO(sc);
         choice = GetDAO.getChoice();
@@ -66,9 +66,9 @@ public class CaseUPDATE {
                     dao.update(new MaterialSupplyCompany(id, name, "", "", 0, 0));
                 }
                 case WORKER -> {
-                    LOGGER.info("Enter new name:");
-                    String name = sc.nextLine();
-                    dao.update(new Worker(id, name, 0, 0));
+                    LOGGER.info("Enter new Project_id:");
+                    int projects_id = ScannerGetter.getInt(sc);
+                    dao.update(new Worker(id, "", 0, projects_id));
                 }
                 default -> currentOption = Main.MenuOptions.ALL;
             }

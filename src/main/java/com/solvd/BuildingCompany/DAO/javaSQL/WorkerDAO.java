@@ -87,7 +87,7 @@ public class WorkerDAO implements DAO<Integer, Worker> {
         try(Connection conn = ConnectionPool.getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            String sql = "UPDATE Workers SET name = \"" + entity.getName() + "\" WHERE id = " + entity.getId();
+            String sql = "UPDATE Workers SET Projects_id = \"" + entity.getProjects_id() + "\" WHERE id = " + entity.getId();
             stmt.executeUpdate(sql);
         }
         catch (SQLException sqlException){
