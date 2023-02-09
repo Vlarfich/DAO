@@ -18,15 +18,15 @@
         </environment>
     </environments>
     <mappers>
-        <mapper class="DAO.myBatis.mappers.IWorkerMapper" />
-        <mapper class="DAO.myBatis.mappers.ICustomerMapper" />
-        <mapper class="DAO.myBatis.mappers.IVehSupplierMapper" />
-        <mapper class="DAO.myBatis.mappers.IBuildingMapper" />
-        <mapper class="DAO.myBatis.mappers.IBulldozerMapper" />
-        <mapper class="DAO.myBatis.mappers.IConcreteMixerMapper" />
-        <mapper class="DAO.myBatis.mappers.ICraneMapper" />
-        <mapper class="DAO.myBatis.mappers.IMaterialSupplyCompanyMapper" />
-        <mapper class="DAO.myBatis.mappers.IProjectManagerMapper" />
-        <mapper class="DAO.myBatis.mappers.IProjectMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IWorkerMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.ICustomerMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IVehSupplierMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IBuildingMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IBulldozerMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IConcreteMixerMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.ICraneMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IMaterialSupplyCompanyMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IProjectManagerMapper" />
+        <mapper class="com.solvd.BuildingCompany.DAO.myBatis.mappers.IProjectMapper" />
     </mappers>
 </configuration>
