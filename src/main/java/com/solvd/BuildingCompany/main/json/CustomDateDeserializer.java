@@ -28,7 +28,6 @@ public class CustomDateDeserializer
     public Date deserialize(
             JsonParser jsonparser, DeserializationContext context)
             throws IOException {
-
         String date = jsonparser.getText();
         try {
             return formatter.parse(date);
