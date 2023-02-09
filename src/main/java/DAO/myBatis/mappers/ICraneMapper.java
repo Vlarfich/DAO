@@ -14,20 +14,20 @@ public interface ICraneMapper {
             @Result(property = "Projects_id", column = "Projects_id"),
     })
     @Select("SELECT id, model, heigth, Suppliers_id, Projects_id FROM Cranes")
-    public abstract List<Crane> readALL();
+    public List<Crane> readALL();
 
     @Select("SELECT id, model, heigth, Suppliers_id, Projects_id FROM Cranes WHERE id=#{id}")
-    public abstract Crane readID(@Param("id") Integer id);
+    public Crane readID(@Param("id") Integer id);
 
     @Delete("DELETE FROM Cranes WHERE id=#{id}")
-    public abstract boolean deleteID(@Param("id") Integer id);
+    public boolean deleteID(@Param("id") Integer id);
 
 
     @Insert("INSERT INTO Cranes (model, heigth, Suppliers_id, Projects_id) VALUES (#{model}, #{height}, " +
             "#{Suppliers_id}, #{Projects_id});")
-    public abstract boolean create_(Crane entity);
+    public boolean create_(Crane entity);
 
     @Update("UPDATE Cranes set model = #{model}, heigth = #{height}, Suppliers_id = #{Supplier_id}, " +
             "Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract boolean update_(Crane entity);
+    public boolean update_(Crane entity);
 }

@@ -2,9 +2,7 @@ package main.menuUtils;
 
 import DAO.DAO;
 import DAO.javaSQL.*;
-import DAO.myBatis.service.BuildingService;
-import DAO.myBatis.service.CustomerService;
-import DAO.myBatis.service.WorkerService;
+import DAO.myBatis.service.*;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
@@ -70,48 +68,39 @@ public class GetDAO {
                 choice = AvailableOptions.PROJECT;
             }
             case 2 -> {
-                if (myBatis)
-                    dao = new CustomerService();
-                else
-                    dao = new CustomerDAO();
+                dao = (myBatis) ? new CustomerService() : new CustomerDAO();
                 choice = AvailableOptions.CUSTOMER;
             }
             case 3 -> {
-                if (myBatis)
-                    dao = new WorkerService();
-                else
-                    dao = new WorkerDAO();
+                dao = (myBatis) ? new WorkerService() : new WorkerDAO();
                 choice = AvailableOptions.WORKER;
             }
             case 4 -> {
-                dao = new ProjectManagerDAO();
+                dao = (myBatis) ? new ProjectManagerService() : new ProjectManagerDAO();
                 choice = AvailableOptions.PROJECT_MANAGER;
             }
             case 5 -> {
-                dao = new MaterialSupplyCompanyDAO();
+                dao = (myBatis) ? new MaterialSupplyService() : new MaterialSupplyCompanyDAO();
                 choice = AvailableOptions.MATERIAL_SUPPLY_COMPANY;
             }
             case 6 -> {
-                dao = new CraneDAO();
+                dao = (myBatis) ? new CraneService() : new CraneDAO();
                 choice = AvailableOptions.CRANE;
             }
             case 7 -> {
-                dao = new ConcreteMixerDAO();
+                dao = (myBatis) ? new ConcreteMixerService() : new ConcreteMixerDAO();
                 choice = AvailableOptions.CONCRETE_MIXER;
             }
             case 8 -> {
-                dao = new BulldozerDAO();
+                dao = (myBatis) ? new BulldozerService() : new BulldozerDAO();
                 choice = AvailableOptions.BULLDOZER;
             }
             case 9 -> {
-                dao = new VehSupplierDAO();
+                dao = (myBatis) ? new VehSupplierService() : new VehSupplierDAO();
                 choice = AvailableOptions.VEH_SUPPLIER;
             }
             case 10 -> {
-                if (myBatis)
-                    dao = new BuildingService();
-                else
-                    dao = new BuildingDAO();
+                dao = (myBatis) ? new BuildingService() : new BuildingDAO();
                 choice = AvailableOptions.BUILDING;
             }
             default -> {

@@ -13,17 +13,17 @@ public interface IProjectManagerMapper {
             @Result(property = "Projects_id", column = "Projects_id")
     })
     @Select("SELECT id, name ,age, Projects_id FROM ProjectManager")
-    public abstract List<ProjectManager> readALL();
+    public List<ProjectManager> readALL();
 
     @Select("SELECT id , name, age, Projects_id FROM ProjectManager WHERE id=#{id}")
-    public abstract ProjectManager readID(@Param("id") Integer id);
+    public ProjectManager readID(@Param("id") Integer id);
 
     @Delete("DELETE FROM ProjectManager WHERE id=#{id}")
-    public abstract boolean deleteID(@Param("id") Integer id);
+    public boolean deleteID(@Param("id") Integer id);
 
     @Insert("INSERT INTO ProjectManager (name, age, Projects_id) VALUES (#{name}, #{age}, #{Projects_id});")
-    public abstract boolean create_(ProjectManager entity);
+    public boolean create_(ProjectManager entity);
 
     @Update("UPDATE ProjectManager set name = #{name}, age = #{age}, Projects_id = #{Projects_id} WHERE id=#{id}")
-    public abstract boolean update_(ProjectManager entity);
+    public boolean update_(ProjectManager entity);
 }

@@ -10,13 +10,13 @@ import java.util.Scanner;
 public class Bulldozer {
     private int id;
     private String model;
-    private int Suppler_id;
+    private int Supplier_id;
     private int Projects_id;
 
-    public Bulldozer(int id, String model, int suppler_id, int projects_id) {
+    public Bulldozer(int id, String model, int supplier_id, int projects_id) {
         this.id = id;
         this.model = model;
-        Suppler_id = suppler_id;
+        Supplier_id = supplier_id;
         Projects_id = projects_id;
     }
 
@@ -36,12 +36,12 @@ public class Bulldozer {
         this.model = model;
     }
 
-    public int getSuppler_id() {
-        return Suppler_id;
+    public int getSupplier_id() {
+        return Supplier_id;
     }
 
-    public void setSuppler_id(int suppler_id) {
-        Suppler_id = suppler_id;
+    public void setSupplier_id(int supplier_id) {
+        Supplier_id = supplier_id;
     }
 
     public int getProjects_id() {
@@ -57,13 +57,13 @@ public class Bulldozer {
         return "\nBulldozer{" +
                 "id=" + id +
                 ", model='" + model + '\'' +
-                ", Suppler_id=" + Suppler_id +
+                ", Suppler_id=" + Supplier_id +
                 ", Projects_id=" + Projects_id +
                 '}';
     }
 
     public String simpleString(){
-        return id + ",\"" + model + "\", " + Suppler_id + ", " + Projects_id;
+        return id + ",\"" + model + "\", " + Supplier_id + ", " + Projects_id;
     }
 
     public static Bulldozer Factory(Scanner sc, Logger logger) {

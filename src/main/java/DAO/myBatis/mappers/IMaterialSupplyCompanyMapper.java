@@ -29,5 +29,5 @@ public interface IMaterialSupplyCompanyMapper {
 
     @Update("UPDATE MaterialSupplyCompany set name = #{name}, phone = #{phone}, email = #{email}, " +
             "Buildings_id = #{Buildings_id}, Projects_id = #{Projects_id} WHERE id=#{id}")
-    public MaterialSupplyCompany update_(MaterialSupplyCompany entity);
+    public boolean update_(MaterialSupplyCompany entity);
 }

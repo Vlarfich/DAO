@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.myBatis.mappers.IProjectMapper">
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Projects (name)
+        VALUES (#{name})
+    </insert>
+
+    <select id="getById" resultMap="userResultMap">
+        SELECT
+        u.id as user_id,
+        u.name as user_name,
+        u.age as user_age,
+        <include refid="com.solvd.course.db.dao.CarDAO.body"/>
+        FROM
+        Users u
+        LEFT JOIN
+        Cars c
+        ON
+        u.id = c.user_id
+        WHERE u.id = #{id};
+    </select>
+
+    <resultMap id="userResultMap" type="com.solvd.course.db.binary.User" autoMapping="false">
+        <id column="user_id" property="id"/>
+        <result column="user_name" property="name"/>
+        <result column="user_age" property="age"/>
+        <collection property="cars" resultMap="com.solvd.course.db.dao.CarDAO.carResultMap"/>
+    </resultMap>
+
+</mapper>

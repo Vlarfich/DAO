@@ -11,18 +11,18 @@ public interface IProjectMapper {
             @Result(property = "name", column = "name"),
     })
     @Select("SELECT id, name FROM Projects")
-    public abstract List<Project> readALL();
+    public List<Project> readALL();
 
     @Select("SELECT id , name FROM Projects WHERE id=#{id}")
-    public abstract Project readID(@Param("id") Integer id);
+    public Project readID(@Param("id") Integer id);
 
     @Delete("DELETE FROM Projects WHERE id=#{id}")
-    public abstract boolean deleteID(@Param("id") Integer id);
+    public boolean deleteID(@Param("id") Integer id);
 
 
     @Insert("INSERT INTO Projects (name) VALUES (#{name});")
-    public abstract boolean create_(Project entity);
+    public boolean create_(Project entity);
 
     @Update("UPDATE Projects set name = #{name} WHERE id=#{id}")
-    public abstract boolean update_(Project entity);
+    public boolean update_(Project entity);
 }

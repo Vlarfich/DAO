@@ -9,14 +9,14 @@ public class ConcreteMixer {
     private int id;
     private String model;
     private int volume;
-    private int Suppler_id;
+    private int Supplier_id;
     private int Projects_id;
 
-    public ConcreteMixer(int id, String model, int volume, int suppler_id, int projects_id) {
+    public ConcreteMixer(int id, String model, int volume, int supplier_id, int projects_id) {
         this.id = id;
         this.model = model;
         this.volume = volume;
-        Suppler_id = suppler_id;
+        Supplier_id = supplier_id;
         Projects_id = projects_id;
     }
 
@@ -44,12 +44,12 @@ public class ConcreteMixer {
         this.volume = volume;
     }
 
-    public int getSuppler_id() {
-        return Suppler_id;
+    public int getSupplier_id() {
+        return Supplier_id;
     }
 
-    public void setSuppler_id(int suppler_id) {
-        Suppler_id = suppler_id;
+    public void setSupplier_id(int supplier_id) {
+        Supplier_id = supplier_id;
     }
 
     public int getProjects_id() {
@@ -66,13 +66,13 @@ public class ConcreteMixer {
                 "id=" + id +
                 ", model='" + model + '\'' +
                 ", volume=" + volume +
-                ", Suppler_id=" + Suppler_id +
+                ", Suppler_id=" + Supplier_id +
                 ", Projects_id=" + Projects_id +
                 '}';
     }
 
     public String simpleString(){
-        return id + ",\"" + model + "\", " + volume + "\", " + Suppler_id + ", " + Projects_id;
+        return id + ",\"" + model + "\", " + volume + "\", " + Supplier_id + ", " + Projects_id;
     }
 
     public static ConcreteMixer Factory(Scanner sc, Logger logger) {
