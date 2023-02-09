@@ -54,7 +54,6 @@ public class BuildingService implements DAO<Integer, Building> {
                 mapper.update_(worker);
                 session.commit();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
                 session.rollback();
             }
         }

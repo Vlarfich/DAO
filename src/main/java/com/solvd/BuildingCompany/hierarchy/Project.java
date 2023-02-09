@@ -1,5 +1,7 @@
 package com.solvd.BuildingCompany.hierarchy;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solvd.BuildingCompany.main.json.CustomDateDeserializer;
 import com.solvd.BuildingCompany.main.json.CustomDateSerializer;
 import com.solvd.BuildingCompany.main.xml.DateAdapter;
@@ -24,8 +26,8 @@ public class Project {
     private String name;
     @JsonSerialize(using = CustomDateSerializer.class)
     @JsonDeserialize(using = CustomDateDeserializer.class)
+//    @JsonFormat(pattern = "YYYY-MM-DD")
     private Date startingDate = new Date();
-
 
     private LinkedList<Worker> workers = new LinkedList<>();
 

@@ -55,7 +55,6 @@ public class WorkerService implements DAO<Integer, Worker> {
                 mapper.update_(worker);
                 session.commit();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
                 session.rollback();
             }
         }

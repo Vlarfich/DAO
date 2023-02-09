@@ -1,8 +1,11 @@
-package main.menuUtils;
+package com.solvd.BuildingCompany.main.menuUtils;
 
-import DAO.DAO;
-import DAO.javaSQL.*;
-import DAO.myBatis.service.*;
+import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.DAO.javaSQL.*;
+import com.solvd.BuildingCompany.DAO.myBatis.service.BuildingService;
+import com.solvd.BuildingCompany.DAO.myBatis.service.CustomerService;
+import com.solvd.BuildingCompany.DAO.myBatis.service.WorkerService;
+import com.solvd.BuildingCompany.DAO.myBatis.service.*;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;

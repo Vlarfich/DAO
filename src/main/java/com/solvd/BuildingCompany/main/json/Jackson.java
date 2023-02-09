@@ -1,5 +1,6 @@
 package com.solvd.BuildingCompany.main.json;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.solvd.BuildingCompany.hierarchy.Customer;
 import com.solvd.BuildingCompany.hierarchy.MAX_ID;
 import com.solvd.BuildingCompany.hierarchy.Project;
@@ -9,6 +10,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
 import java.util.LinkedList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public class Jackson {
     public static void main(String[] args) throws IOException {
@@ -46,5 +49,8 @@ public class Jackson {
             System.out.println(w);
         }
 
+
+        XmlMapper mapper1 = new XmlMapper();
+        System.out.println(mapper1.writeValueAsString(project1));
     }
 }

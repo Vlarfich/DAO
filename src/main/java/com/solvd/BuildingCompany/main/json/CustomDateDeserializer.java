@@ -13,7 +13,7 @@ import java.util.Date;
 public class CustomDateDeserializer
         extends StdDeserializer<Date> {
 
-    private static SimpleDateFormat formatter
+    private static final SimpleDateFormat formatter
             = new SimpleDateFormat("dd-MM-yyyy");
 
     public CustomDateDeserializer() {

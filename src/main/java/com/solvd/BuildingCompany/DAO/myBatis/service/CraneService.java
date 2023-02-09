@@ -1,11 +1,10 @@
-package DAO.myBatis.service;
+package com.solvd.BuildingCompany.DAO.myBatis.service;
 
-import DAO.DAO;
-import DAO.myBatis.MyBatisUtil;
-import DAO.myBatis.mappers.IConcreteMixerMapper;
-import DAO.myBatis.mappers.ICraneMapper;
-import hierarchy.Crane;
-import hierarchy.Worker;
+import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.DAO.myBatis.MyBatisUtil;
+import com.solvd.BuildingCompany.DAO.myBatis.mappers.ICraneMapper;
+import com.solvd.BuildingCompany.hierarchy.Crane;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -56,7 +55,6 @@ public class CraneService implements DAO<Integer, Crane> {
                 mapper.update_(worker);
                 session.commit();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
                 session.rollback();
             }
         }

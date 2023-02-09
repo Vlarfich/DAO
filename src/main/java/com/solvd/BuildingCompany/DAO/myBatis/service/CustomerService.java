@@ -54,7 +54,6 @@ public class CustomerService implements DAO<Integer, Customer> {
                 mapper.update_(worker);
                 session.commit();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
                 session.rollback();
             }
         }

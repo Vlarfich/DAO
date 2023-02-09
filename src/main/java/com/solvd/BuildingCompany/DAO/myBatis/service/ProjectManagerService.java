@@ -1,11 +1,10 @@
-package DAO.myBatis.service;
+package com.solvd.BuildingCompany.DAO.myBatis.service;
 
-import DAO.DAO;
-import DAO.myBatis.MyBatisUtil;
-import DAO.myBatis.mappers.IProjectManagerMapper;
-import DAO.myBatis.mappers.IWorkerMapper;
-import hierarchy.ProjectManager;
-import hierarchy.Worker;
+
+import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.DAO.myBatis.MyBatisUtil;
+import com.solvd.BuildingCompany.DAO.myBatis.mappers.IProjectManagerMapper;
+import com.solvd.BuildingCompany.hierarchy.ProjectManager;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -56,7 +55,6 @@ public class ProjectManagerService implements DAO<Integer, ProjectManager> {
                 mapper.update_(worker);
                 session.commit();
             } catch (Exception e) {
-                System.err.println(e.getMessage());
                 session.rollback();
             }
         }
