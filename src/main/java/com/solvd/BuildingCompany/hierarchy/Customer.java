@@ -15,7 +15,7 @@ public class Customer {
     private String email;
     private int Projects_id;
 
-    public Customer() {
+    private Customer() {
     }
 
     @JsonCreator
@@ -68,6 +68,39 @@ public class Customer {
         Projects_id = projects_id;
     }
 
+    public static Customer.Builder builder() {
+        return new Customer().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public Customer.Builder setId(int id) {
+            Customer.this.id = id;
+            return this;
+        }
+        public Customer.Builder setName(String model) {
+            Customer.this.name = model;
+            return this;
+        }
+        public Customer.Builder setPhone(String id) {
+            Customer.this.phone = id;
+            return this;
+        }
+        public Customer.Builder setEmail(String id) {
+            Customer.this.email = id;
+            return this;
+        }
+        public Customer.Builder setProjectsId(int id) {
+            Customer.this.Projects_id = id;
+            return this;
+        }
+
+        public Customer build() {
+            return Customer.this;
+        }
+    }
     @Override
     public String toString() {
         return "\nCustomer{" +

@@ -10,6 +10,7 @@ public class ProjectManager {
     private String name;
     private int age;
     private int Projects_id;
+    private ProjectManager(){};
 
     public ProjectManager(int id, String name, int age, int projects_id) {
         this.id = id;
@@ -44,6 +45,35 @@ public class ProjectManager {
 
     public void setProjects_id(int projects_id) {
         Projects_id = projects_id;
+    }
+
+    public static ProjectManager.Builder builder() {
+        return new ProjectManager().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public ProjectManager.Builder setId(int id) {
+            ProjectManager.this.id = id;
+            return this;
+        }
+        public ProjectManager.Builder setName(String address) {
+            ProjectManager.this.name = address;
+            return this;
+        }
+        public ProjectManager.Builder setAge(int id) {
+            ProjectManager.this.age = id;
+            return this;
+        }
+        public ProjectManager.Builder setProjectsId(int id) {
+            ProjectManager.this.Projects_id = id;
+            return this;
+        }
+        public ProjectManager build() {
+            return ProjectManager.this;
+        }
     }
 
     @Override

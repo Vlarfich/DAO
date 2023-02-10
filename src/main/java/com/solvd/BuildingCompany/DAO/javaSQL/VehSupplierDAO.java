@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.ProjectManager;
 import com.solvd.BuildingCompany.hierarchy.VehSupplier;
 
 import java.sql.*;
@@ -23,7 +24,12 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 int Buildings_id = rs.getInt(4);
-                users.add(new VehSupplier(id, name, Buildings_id));
+                VehSupplier b = VehSupplier.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setBuildingsId(Buildings_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -42,7 +48,12 @@ public class VehSupplierDAO implements DAO<Integer, VehSupplier> {
             if (rs.next()) {
                 String name = rs.getString(2);
                 int Buildings_id = rs.getInt(3);
-                user = new VehSupplier(id, name, Buildings_id);
+                VehSupplier b = VehSupplier.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setBuildingsId(Buildings_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

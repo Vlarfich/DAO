@@ -31,7 +31,7 @@ public class Project {
 
     private LinkedList<Worker> workers = new LinkedList<>();
 
-    public Project() {
+    private Project() {
     }
 
     public Project(int id, String name) {
@@ -95,5 +95,32 @@ public class Project {
         logger.info("Enter name:");
         String name = sc.nextLine();
         return new Project(MAX_ID.getMAX_ID("Projects") + 1, name);
+    }
+
+
+
+
+    public static Project.Builder builder() {
+        return new Project().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+
+        public Project.Builder setId(int id) {
+            Project.this.id = id;
+            return this;
+        }
+
+        public Project.Builder setName(String address) {
+            Project.this.name = address;
+            return this;
+        }
+
+        public Project build() {
+            return Project.this;
+        }
     }
 }

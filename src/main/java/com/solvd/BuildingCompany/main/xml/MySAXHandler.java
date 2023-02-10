@@ -48,10 +48,10 @@ public class MySAXHandler extends DefaultHandler {
         if (qName.equalsIgnoreCase("customer")) {
             String id = attributes.getValue("id");
             String pid = attributes.getValue("projectsId");
-            emp = new Customer();
-            emp.setId(Integer.parseInt(id));
-            emp.setProjects_id(Integer.parseInt(pid));
-
+            emp = Customer.builder()
+                    .setId(Integer.parseInt(id))
+                    .setProjectsId(Integer.parseInt(pid))
+                    .build();
             if (empList == null)
                 empList = new ArrayList<>();
         } else if (qName.equalsIgnoreCase("name")) {

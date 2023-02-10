@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.Building;
 import com.solvd.BuildingCompany.hierarchy.Project;
 import org.apache.logging.log4j.LogManager;
 
@@ -23,7 +24,11 @@ public class ProjectDAO implements DAO<Integer, Project> {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
-                users.add(new Project(id, name));
+                Project b = Project.builder()
+                        .setId(id)
+                        .setName(name)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             LogManager.getLogger(ProjectDAO.class).warn(e.getMessage());
@@ -41,7 +46,11 @@ public class ProjectDAO implements DAO<Integer, Project> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                user = new Project(id, name);
+                Project b = Project.builder()
+                        .setId(id)
+                        .setName(name)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             LogManager.getLogger(ProjectDAO.class).warn(e.getMessage());

@@ -54,7 +54,7 @@ public class DOMParser {
 
     private static Project getProject(Node node) {
         // XMLReaderDOM domReader = new XMLReaderDOM();
-        Project user = new Project();
+        Project user = Project.builder().build();
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
             user.setId(Integer.parseInt(element.getAttribute("id")));

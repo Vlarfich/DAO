@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.ProjectManager;
 import com.solvd.BuildingCompany.hierarchy.Worker;
 
 import java.sql.*;
@@ -23,7 +24,13 @@ public class WorkerDAO implements DAO<Integer, Worker> {
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                users.add(new Worker(id, name, age, Projects_id));
+                Worker b = Worker.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setAge(age)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -43,7 +50,13 @@ public class WorkerDAO implements DAO<Integer, Worker> {
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                user = new Worker(id, name, age, Projects_id);
+                Worker b = Worker.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setAge(age)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

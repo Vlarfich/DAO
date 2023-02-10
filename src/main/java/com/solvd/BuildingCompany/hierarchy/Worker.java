@@ -61,6 +61,35 @@ public class Worker {
         Projects_id = projects_id;
     }
 
+    public static Worker.Builder builder() {
+        return new Worker().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public Worker.Builder setId(int id) {
+            Worker.this.id = id;
+            return this;
+        }
+        public Worker.Builder setName(String address) {
+            Worker.this.name = address;
+            return this;
+        }
+        public Worker.Builder setAge(int id) {
+            Worker.this.age = id;
+            return this;
+        }
+        public Worker.Builder setProjectsId(int id) {
+            Worker.this.Projects_id = id;
+            return this;
+        }
+        public Worker build() {
+            return Worker.this;
+        }
+    }
+
     @Override
     public String toString() {
         return "\nWorker{" +

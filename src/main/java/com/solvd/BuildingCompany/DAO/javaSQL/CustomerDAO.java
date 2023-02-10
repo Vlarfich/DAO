@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.Crane;
 import com.solvd.BuildingCompany.hierarchy.Customer;
 
 import java.sql.*;
@@ -25,7 +26,14 @@ public class CustomerDAO implements DAO<Integer, Customer> {
                 String phone = rs.getString(3);;
                 String email = rs.getString(4);;
                 int Projects_id = rs.getInt(5);
-                users.add(new Customer(id, name, phone, email, Projects_id));
+                Customer b = Customer.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setPhone(phone)
+                        .setEmail(email)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -46,7 +54,14 @@ public class CustomerDAO implements DAO<Integer, Customer> {
                 String phone = rs.getString(3);;
                 String email = rs.getString(4);;
                 int Projects_id = rs.getInt(5);
-                user = new Customer(id, name, phone, email, Projects_id);
+                Customer b = Customer.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setPhone(phone)
+                        .setEmail(email)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

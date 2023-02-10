@@ -13,6 +13,8 @@ public class MaterialSupplyCompany {
     private int Buildings_id;
     private int Projects_id;
 
+    private MaterialSupplyCompany(){};
+
     public MaterialSupplyCompany(int id, String name, String phone, String email, int buildings_id, int projects_id) {
         this.id = id;
         this.name = name;
@@ -71,6 +73,43 @@ public class MaterialSupplyCompany {
         Projects_id = projects_id;
     }
 
+    public static MaterialSupplyCompany.Builder builder() {
+        return new MaterialSupplyCompany().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public MaterialSupplyCompany.Builder setId(int id) {
+            MaterialSupplyCompany.this.id = id;
+            return this;
+        }
+        public MaterialSupplyCompany.Builder setName(String model) {
+            MaterialSupplyCompany.this.name = model;
+            return this;
+        }
+        public MaterialSupplyCompany.Builder setPhone(String id) {
+            MaterialSupplyCompany.this.phone = id;
+            return this;
+        }
+        public MaterialSupplyCompany.Builder setEmail(String id) {
+            MaterialSupplyCompany.this.email = id;
+            return this;
+        }
+        public MaterialSupplyCompany.Builder setBuildingsId(int id) {
+            MaterialSupplyCompany.this.Buildings_id = id;
+            return this;
+        }
+        public MaterialSupplyCompany.Builder setProjectsId(int id) {
+            MaterialSupplyCompany.this.Projects_id = id;
+            return this;
+        }
+
+        public MaterialSupplyCompany build() {
+            return MaterialSupplyCompany.this;
+        }
+    }
     @Override
     public String toString() {
         return "\nMaterialSupplyCompany{" +

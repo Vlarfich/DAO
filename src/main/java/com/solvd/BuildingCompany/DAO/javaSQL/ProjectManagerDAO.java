@@ -1,6 +1,8 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.MaterialSupplyCompany;
+import com.solvd.BuildingCompany.hierarchy.Project;
 import com.solvd.BuildingCompany.hierarchy.ProjectManager;
 
 import java.sql.*;
@@ -23,7 +25,13 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                users.add(new ProjectManager(id, name, age, Projects_id));
+                ProjectManager b = ProjectManager.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setAge(age)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -44,7 +52,13 @@ public class ProjectManagerDAO implements DAO<Integer, ProjectManager> {
                 String name = rs.getString(2);
                 int age = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                user = new ProjectManager(id, name, age, Projects_id);
+                ProjectManager b = ProjectManager.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setAge(age)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

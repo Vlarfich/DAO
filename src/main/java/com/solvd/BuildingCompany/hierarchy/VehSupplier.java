@@ -3,13 +3,14 @@ package com.solvd.BuildingCompany.hierarchy;
 import com.solvd.BuildingCompany.main.ScannerGetter;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.foreign.VaList;
 import java.util.Scanner;
 
 public class VehSupplier {
     private int id;
     private String name;
     private int Buildings_id;
-
+    private VehSupplier(){};
     public VehSupplier(int id, String name, int projects_id) {
         this.id = id;
         this.name = name;
@@ -35,6 +36,31 @@ public class VehSupplier {
 
     public void setBuildings_id(int buildings_id) {
         Buildings_id = buildings_id;
+    }
+
+    public static VehSupplier.Builder builder() {
+        return new VehSupplier().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public VehSupplier.Builder setId(int id) {
+            VehSupplier.this.id = id;
+            return this;
+        }
+        public VehSupplier.Builder setName(String address) {
+            VehSupplier.this.name = address;
+            return this;
+        }
+        public VehSupplier.Builder setBuildingsId(int id) {
+            VehSupplier.this.Buildings_id = id;
+            return this;
+        }
+        public VehSupplier build() {
+            return VehSupplier.this;
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.Customer;
 import com.solvd.BuildingCompany.hierarchy.MaterialSupplyCompany;
 
 import java.sql.*;
@@ -25,7 +26,15 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
                 String email = rs.getString(4);
                 int Buildings_id = rs.getInt(5);
                 int Projects_id = rs.getInt(6);
-                users.add(new MaterialSupplyCompany(id, name, phone, email, Buildings_id, Projects_id));
+                MaterialSupplyCompany b = MaterialSupplyCompany.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setPhone(phone)
+                        .setEmail(email)
+                        .setBuildingsId(Buildings_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -47,7 +56,15 @@ public class MaterialSupplyCompanyDAO implements DAO<Integer, MaterialSupplyComp
                 String email = rs.getString(4);
                 int Buildings_id = rs.getInt(5);
                 int Projects_id = rs.getInt(6);
-                user = new MaterialSupplyCompany(id, name, phone, email, Buildings_id, Projects_id);
+                MaterialSupplyCompany b = MaterialSupplyCompany.builder()
+                        .setId(id)
+                        .setName(name)
+                        .setPhone(phone)
+                        .setEmail(email)
+                        .setBuildingsId(Buildings_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
