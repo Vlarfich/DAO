@@ -2,6 +2,7 @@ package com.solvd.BuildingCompany.hierarchy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.solvd.BuildingCompany.main.designPatterns.SomeObserver;
 import com.solvd.BuildingCompany.main.json.CustomDateDeserializer;
 import com.solvd.BuildingCompany.main.json.CustomDateSerializer;
 import com.solvd.BuildingCompany.main.xml.DateAdapter;
@@ -13,15 +14,16 @@ import org.apache.logging.log4j.Logger;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 @XmlRootElement(name = "project")
 @XmlAccessorType (XmlAccessType.PROPERTY)
 @XmlType(propOrder = {"id", "name", "startingDate", "workers"})
 @JsonRootName(value = "Project", namespace = "Projects")
 public class Project {
+
+    private static List<SomeObserver> observers = new ArrayList<>();
+
     private Integer id;
     private String name;
     @JsonSerialize(using = CustomDateSerializer.class)
@@ -37,6 +39,7 @@ public class Project {
     public Project(int id, String name) {
         this.id = id;
         this.name = name;
+        notifyAllObservers();
     }
 
     @XmlAttribute
@@ -120,7 +123,16 @@ public class Project {
         }
 
         public Project build() {
+            notifyAllObservers();
             return Project.this;
         }
+    }
+
+    public static void attach(SomeObserver someObserver) {
+        observers.add(someObserver);
+    }
+
+    private void notifyAllObservers() {
+        observers.forEach(SomeObserver::reactionOnAction);
     }
 }

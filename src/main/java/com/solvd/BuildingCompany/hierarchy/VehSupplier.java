@@ -3,7 +3,6 @@ package com.solvd.BuildingCompany.hierarchy;
 import com.solvd.BuildingCompany.main.ScannerGetter;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.foreign.VaList;
 import java.util.Scanner;
 
 public class VehSupplier {

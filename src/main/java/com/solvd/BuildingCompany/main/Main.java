@@ -1,5 +1,6 @@
 package com.solvd.BuildingCompany.main;
 
+import com.solvd.BuildingCompany.main.designPatterns.MyObserver;
 import com.solvd.BuildingCompany.main.menuUtils.*;
 import jdk.jfr.Unsigned;
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +31,8 @@ public class Main {
     private static final GetDAO.AvailableOptions choice = null;
 
     public static void main(String[] args) {
+        MyObserver m1 = new MyObserver();
+        MyObserver m2 = new MyObserver();
         Menu();
     }
 

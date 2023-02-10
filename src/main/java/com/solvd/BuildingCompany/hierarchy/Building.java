@@ -11,7 +11,7 @@ public class Building {
     @JsonProperty("name")
     private String address;
 
-    public Building(){};
+    private Building(){};
     @JsonCreator
     public Building(int id, @JsonProperty("name") String address) {
         this.id = id;
