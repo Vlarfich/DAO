@@ -24,7 +24,14 @@ public class CraneDAO implements DAO<Integer, Crane> {
                 int height = rs.getInt(3);
                 int Supplier_id = rs.getInt(4);
                 int Projects_id = rs.getInt(5);
-                users.add(new Crane(id, model, height, Supplier_id, Projects_id));
+                Crane b = Crane.builder()
+                        .setId(id)
+                        .setModel(model)
+                        .setHeight(height)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -45,7 +52,14 @@ public class CraneDAO implements DAO<Integer, Crane> {
                 int height = rs.getInt(3);
                 int Supplier_id = rs.getInt(4);
                 int Projects_id = rs.getInt(5);
-                user = new Crane(id, model, height, Supplier_id, Projects_id);
+                Crane b = Crane.builder()
+                        .setId(id)
+                        .setModel(model)
+                        .setHeight(height)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

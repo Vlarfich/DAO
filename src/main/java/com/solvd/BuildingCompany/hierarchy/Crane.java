@@ -13,7 +13,7 @@ public class Crane {
     private int height;
     private int Supplier_id;
     private int Projects_id;
-
+    private Crane(){};
     public Crane(int id, String model, int height, int supplier_id, int projects_id) {
         this.id = id;
         this.model = model;
@@ -62,6 +62,39 @@ public class Crane {
         Projects_id = projects_id;
     }
 
+    public static Crane.Builder builder() {
+        return new Crane().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public Crane.Builder setId(int id) {
+            Crane.this.id = id;
+            return this;
+        }
+        public Crane.Builder setModel(String model) {
+            Crane.this.model = model;
+            return this;
+        }
+        public Crane.Builder setHeight(int id) {
+            Crane.this.height = id;
+            return this;
+        }
+        public Crane.Builder setSupplierId(int id) {
+            Crane.this.Supplier_id = id;
+            return this;
+        }
+        public Crane.Builder setProjectsId(int id) {
+            Crane.this.Projects_id = id;
+            return this;
+        }
+
+        public Crane build() {
+            return Crane.this;
+        }
+    }
     @Override
     public String toString() {
         return "\nCrane{" +

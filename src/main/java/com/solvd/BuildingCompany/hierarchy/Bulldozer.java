@@ -13,6 +13,7 @@ public class Bulldozer {
     private int Supplier_id;
     private int Projects_id;
 
+    private Bulldozer(){};
     public Bulldozer(int id, String model, int supplier_id, int projects_id) {
         this.id = id;
         this.model = model;
@@ -50,6 +51,36 @@ public class Bulldozer {
 
     public void setProjects_id(int projects_id) {
         Projects_id = projects_id;
+    }
+
+    public static Builder builder() {
+        return new Bulldozer().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public Bulldozer.Builder setId(int id) {
+            Bulldozer.this.id = id;
+            return this;
+        }
+        public Bulldozer.Builder setModel(String model) {
+            Bulldozer.this.model = model;
+            return this;
+        }
+        public Bulldozer.Builder setSupplierId(int id) {
+            Bulldozer.this.Supplier_id = id;
+            return this;
+        }
+        public Bulldozer.Builder setProjectsId(int id) {
+            Bulldozer.this.Projects_id = id;
+            return this;
+        }
+
+        public Bulldozer build() {
+            return Bulldozer.this;
+        }
     }
 
     @Override

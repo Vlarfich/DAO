@@ -24,7 +24,11 @@ public class BuildingDAO implements DAO<Integer, Building> {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String address = rs.getString(2);
-                users.add(new Building(id, address));
+                Building b = Building.builder()
+                        .setId(id)
+                        .setAddress(address)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -42,8 +46,12 @@ public class BuildingDAO implements DAO<Integer, Building> {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                String adress = rs.getString(2);
-                user = new Building(id, adress);
+                String address = rs.getString(2);
+                Building b = Building.builder()
+                        .setId(id)
+                        .setAddress(address)
+                        .build();
+                user = b;
             }
 
         } catch (SQLException e) {

@@ -12,6 +12,7 @@ public class ConcreteMixer {
     private int Supplier_id;
     private int Projects_id;
 
+    private ConcreteMixer(){};
     public ConcreteMixer(int id, String model, int volume, int supplier_id, int projects_id) {
         this.id = id;
         this.model = model;
@@ -58,6 +59,40 @@ public class ConcreteMixer {
 
     public void setProjects_id(int projects_id) {
         Projects_id = projects_id;
+    }
+
+    public static ConcreteMixer.Builder builder() {
+        return new ConcreteMixer().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+        public ConcreteMixer.Builder setId(int id) {
+            ConcreteMixer.this.id = id;
+            return this;
+        }
+        public ConcreteMixer.Builder setModel(String model) {
+            ConcreteMixer.this.model = model;
+            return this;
+        }
+        public ConcreteMixer.Builder setVolume(int id) {
+            ConcreteMixer.this.volume = id;
+            return this;
+        }
+        public ConcreteMixer.Builder setSupplierId(int id) {
+            ConcreteMixer.this.Supplier_id = id;
+            return this;
+        }
+        public ConcreteMixer.Builder setProjectsId(int id) {
+            ConcreteMixer.this.Projects_id = id;
+            return this;
+        }
+
+        public ConcreteMixer build() {
+            return ConcreteMixer.this;
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.Building;
 import com.solvd.BuildingCompany.hierarchy.Bulldozer;
 
 import java.sql.*;
@@ -23,7 +24,12 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
                 String model = rs.getString(2);
                 int Supplier_id = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                users.add(new Bulldozer(id, model, Supplier_id, Projects_id));
+                Bulldozer b = Bulldozer.builder().setId(id)
+                        .setModel(model)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -41,9 +47,15 @@ public class BulldozerDAO implements DAO<Integer, Bulldozer> {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 String name = rs.getString(2);
-                int age = rs.getInt(3);
+                int Supplier_id = rs.getInt(3);
                 int Projects_id = rs.getInt(4);
-                user = new Bulldozer(id, name, age, Projects_id);
+                Bulldozer b = Bulldozer.builder()
+                        .setId(id)
+                        .setModel(name)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

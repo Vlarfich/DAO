@@ -10,6 +10,8 @@ public class Building {
     private int id;
     @JsonProperty("name")
     private String address;
+
+    public Building(){};
     @JsonCreator
     public Building(int id, @JsonProperty("name") String address) {
         this.id = id;
@@ -31,6 +33,31 @@ public class Building {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public static Builder builder() {
+        return new Building().new Builder();
+    }
+
+    public class Builder {
+        private Builder() {
+
+        }
+
+        public Builder setId(int id) {
+            Building.this.id = id;
+            return this;
+        }
+
+        public Builder setAddress(String address) {
+            Building.this.address = address;
+            return this;
+        }
+
+        public Building build() {
+            return Building.this;
+        }
+    }
+
 
     @Override
     public String toString() {

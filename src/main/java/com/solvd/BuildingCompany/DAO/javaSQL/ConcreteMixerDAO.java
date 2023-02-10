@@ -1,6 +1,7 @@
 package com.solvd.BuildingCompany.DAO.javaSQL;
 
 import com.solvd.BuildingCompany.DAO.DAO;
+import com.solvd.BuildingCompany.hierarchy.Bulldozer;
 import com.solvd.BuildingCompany.hierarchy.ConcreteMixer;
 
 import java.sql.*;
@@ -24,7 +25,14 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
                 int volume = rs.getInt(3);
                 int Supplier_id = rs.getInt(4);
                 int Projects_id = rs.getInt(5);
-                users.add(new ConcreteMixer(id, model, volume, Supplier_id, Projects_id));
+                ConcreteMixer b = ConcreteMixer.builder()
+                        .setId(id)
+                        .setModel(model)
+                        .setVolume(volume)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                users.add(b);
             }
 
         } catch (SQLException e) {
@@ -48,7 +56,14 @@ public class ConcreteMixerDAO implements DAO<Integer, ConcreteMixer> {
                 int volume = rs.getInt(3);
                 int Supplier_id = rs.getInt(4);
                 int Projects_id = rs.getInt(5);
-                user = new ConcreteMixer(id, model, volume, Supplier_id, Projects_id);
+                ConcreteMixer b = ConcreteMixer.builder()
+                        .setId(id)
+                        .setModel(model)
+                        .setVolume(volume)
+                        .setSupplierId(Supplier_id)
+                        .setProjectsId(Projects_id)
+                        .build();
+                user = b;
             }
 
         } catch (SQLException e) {
