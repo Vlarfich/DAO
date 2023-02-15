@@ -8,6 +8,8 @@ import com.solvd.BuildingCompany.DAO.myBatis.service.WorkerService;
 import com.solvd.BuildingCompany.DAO.myBatis.service.*;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GetDAO {
@@ -24,7 +26,7 @@ public class GetDAO {
         BUILDING,
         BACK
     }
-
+    //  C : 57   I : 12
     private static Logger LOGGER;
     private static boolean myBatis = false;
     private static GetDAO.AvailableOptions choice = GetDAO.AvailableOptions.BACK;
